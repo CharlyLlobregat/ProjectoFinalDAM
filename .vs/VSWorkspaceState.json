@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Assets",
+    "\\Assets\\Scripts"
   ],
-  "SelectedNode": "\\ProjectSettings",
+  "SelectedNode": "\\ProjectoFinalDAM.sln",
   "PreviewInSolutionExplorer": false
 }

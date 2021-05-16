@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4463617117942022085
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2310146914259558985, guid: 9eaca84921931bd45bfd14c73671990b,
+        type: 3}
+      propertyPath: Id
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2310146914259558985, guid: 9eaca84921931bd45bfd14c73671990b,
+        type: 3}
+      propertyPath: Name
+      value: Fire Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 2378485329672732380, guid: 9eaca84921931bd45bfd14c73671990b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -5094286353425474703, guid: 723e60c9186084d49a5a91caaf6e7941,
+        type: 3}
+    - target: {fileID: 3506967108530445632, guid: 9eaca84921931bd45bfd14c73671990b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3506967108530445632, guid: 9eaca84921931bd45bfd14c73671990b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3506967108530445632, guid: 9eaca84921931bd45bfd14c73671990b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3506967108530445632, guid: 9eaca84921931bd45bfd14c73671990b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3506967108530445632, guid: 9eaca84921931bd45bfd14c73671990b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3506967108530445632, guid: 9eaca84921931bd45bfd14c73671990b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3506967108530445632, guid: 9eaca84921931bd45bfd14c73671990b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3506967108530445632, guid: 9eaca84921931bd45bfd14c73671990b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3506967108530445632, guid: 9eaca84921931bd45bfd14c73671990b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3506967108530445632, guid: 9eaca84921931bd45bfd14c73671990b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3506967108530445632, guid: 9eaca84921931bd45bfd14c73671990b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3595993777668990696, guid: 9eaca84921931bd45bfd14c73671990b,
+        type: 3}
+      propertyPath: m_Name
+      value: Sword_1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9eaca84921931bd45bfd14c73671990b, type: 3}
