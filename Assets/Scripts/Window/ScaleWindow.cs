@@ -7,6 +7,8 @@ public class ScaleWindow : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
     public CanvasGroup canvasGroup;
 
     public WindowController Window;
+
+    public UnityEngine.Events.UnityEvent OnScale;
     private float scaleFactor;
 
     private Vector2 min;
@@ -21,6 +23,7 @@ public class ScaleWindow : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
     public void OnBeginDrag(PointerEventData eventData) {
         canvasGroup.blocksRaycasts = false;
         canvasGroup.alpha = 0.7f;
+        OnScale.Invoke();
     }
 
     public void OnDrag(PointerEventData eventData) {

@@ -63,4 +63,9 @@ public class InventoryManager : MonoBehaviour {
             tempItem.GetComponentInChildren<SpriteRenderer>().sprite = x.GetComponent<SpriteRenderer>().sprite;
         });
     }
+
+    public void UnSelectAll() {
+        InvSelect.GetComponentsInChildren<Toggle>().ToList().ForEach(x => x.isOn = false);
+        EquipedSelect.GetComponentsInChildren<Toggle>().ToList().ForEach(x => x.isOn = false);
+    }
 }

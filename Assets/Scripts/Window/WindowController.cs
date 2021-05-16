@@ -29,15 +29,15 @@ public class WindowController : MonoBehaviour {
         this.transform.position = this.startPosition;
     }
 
-    private void OnHide() {
+    public void OnHide() {
         this.hide = true;
         this.gameObject.SetActive(!this.hide);
     }
 
-    private void OnClose() {
+    public void OnClose() {
         this.closed = !this.closed;
 
-        this.CloseBtn.transform.rotation = new Quaternion(0, 0, (this.closed ? 180 : 0), 0);
+        this.CloseBtn.transform.rotation = new Quaternion(0, 0, (this.closed ? 0 : 180), 0);
         GetComponent<RectTransform>().sizeDelta = new Vector2(
             this.GetComponent<RectTransform>().sizeDelta.x,
             this.closed ? 30 : Min.y
