@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))]
 public class WeaponDamage : MonoBehaviour {
     public int Damage;
 
@@ -15,7 +14,7 @@ public class WeaponDamage : MonoBehaviour {
     public float deltaTimeInside;
 
     private void Start() {
-        HitPoint = transform.Find("HitPoint").gameObject;
+        HitPoint = transform.Find("Sword").Find("HitPoint").gameObject;
     }
 
     private void OnTriggerEnter2D(Collider2D _other) {

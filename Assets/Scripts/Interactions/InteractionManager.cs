@@ -26,7 +26,7 @@ public class InteractionManager : MonoBehaviour {
         uint itemDefense = 0;
         foreach(Stats.ItemStats i in this.inventory.EquipedItems)
             itemDefense += i.Defense;
-        uint totalDamage = _damage - itemDefense - this.stats.Defense;
+        uint totalDamage = (uint) Mathf.Max(_damage - itemDefense - this.stats.Defense, 0);
 
         this.stats.ReduceHealth(totalDamage);
 
@@ -54,7 +54,13 @@ public class InteractionManager : MonoBehaviour {
     public void Use(Stats.ItemStats _item) {
 
     }
+    public void Pick() {
+        InteractionController objectToInteract = GetNearest(this.Interactables?.Where(x => x.CanPick));
+        if (objectToInteract == null) return;
 
+        this.GetComponent<Inventory>().AddItem(objectToInteract.GetComponent<Stats.ItemStats>());
+        Destroy(objectToInteract.gameObject);
+    }
 
     private void OnTriggerEnter2D(Collider2D _other) {
         InteractionController temp = null;
@@ -95,6 +101,18 @@ public class InteractionManager : MonoBehaviour {
 
     public void Kill() {
         GameObject.Find("Player").GetComponent<Stats.EntityStats>().AddExp(this.stats.EXP);
+        this.inventory.Items.ForEach(x => {
+            var item = Instantiate(
+                ItemManager.Instance.Items.Find(y => y.Id == x.Id).gameObject,
+                this.transform.position + new Vector3(
+                    Random.Range(-0.5f, 0.5f),
+                    Random.Range(-0.5f, 0.5f),
+                    0
+                ),
+                this.transform.rotation
+            );
+            item.GetComponent<InteractionController>().CanPick = true;
+        });
         this.gameObject.SetActive(false);
     }
 }

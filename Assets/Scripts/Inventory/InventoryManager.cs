@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using Stats;
 
 public class InventoryManager : MonoBehaviour {
 
@@ -23,16 +24,19 @@ public class InventoryManager : MonoBehaviour {
     }
 
     public void Equipe() {
-        this.inv.Equipe(InvSelect.ActiveToggles().Where(x => x.isOn).First().gameObject.GetComponentInChildren<Stats.ItemStats>());
-        Fill();
-
+        if(InvSelect.ActiveToggles().Where(x => x.isOn).Any()) {
+            this.inv.Equipe(InvSelect.ActiveToggles().Where(x => x.isOn).First().gameObject.GetComponentInChildren<Stats.ItemStats>());
+            Fill();
+        }
     }
     public void UnEquipe() {
-        this.inv.Unequipe(EquipedSelect.ActiveToggles().Where(x => x.isOn).First().gameObject.GetComponentInChildren<Stats.ItemStats>());
-        Fill();
+        if (EquipedSelect.ActiveToggles().Where(x => x.isOn).Any()) {
+            this.inv.Unequipe(EquipedSelect.ActiveToggles().Where(x => x.isOn).First().gameObject.GetComponentInChildren<Stats.ItemStats>());
+            Fill();
+        }
     }
 
-    private void Fill() {
+    public void Fill() {
         InvSelect.GetComponentsInChildren<Toggle>().ToList().ForEach(x => Destroy(x.gameObject));
         EquipedSelect.GetComponentsInChildren<Toggle>().ToList().ForEach(x => Destroy(x.gameObject));
 

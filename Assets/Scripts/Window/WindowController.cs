@@ -15,7 +15,7 @@ public class WindowController : MonoBehaviour {
     private bool hide = false;
     private Vector3 startPosition;
 
-    public void Start() {
+    private void Start() {
         CloseBtn.onClick.AddListener(this.OnClose);
         HideBtn.onClick.AddListener(this.OnHide);
 

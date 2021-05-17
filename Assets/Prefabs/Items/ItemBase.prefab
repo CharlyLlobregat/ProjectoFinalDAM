@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 3506967108530445632}
   - component: {fileID: 2378485329672732380}
   - component: {fileID: 2310146914259558985}
+  - component: {fileID: 9216775187030046295}
+  - component: {fileID: 8456199173349901040}
   m_Layer: 0
   m_Name: ItemBase
   m_TagString: Untagged
@@ -102,6 +104,48 @@ MonoBehaviour:
   Strength: 0
   Defense: 0
   Speed: 0
+  Id: 0
   Name: 
   MaxStackSize: 1
   CurrentAmount: 1
+  Type: 0
+--- !u!114 &9216775187030046295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3595993777668990696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 100ea67d240105745a0823658c2df264, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InteractionPoint: {fileID: 3506967108530445632}
+  CanActivate: 0
+  CanPlace: 0
+  CanPick: 1
+  CanAttack: 0
+  CanTalk: 0
+  ActivateAction:
+    m_PersistentCalls:
+      m_Calls: []
+  PlaceAction:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!58 &8456199173349901040
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3595993777668990696}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.125, y: 0.125}
+  serializedVersion: 2
+  m_Radius: 0.5

@@ -39,8 +39,10 @@ public class PlayerController : MonoBehaviour {
         float horizontal = Input.GetAxisRaw(GameConstants.AXIS_H);
         float vertical = Input.GetAxisRaw(GameConstants.AXIS_V);
 
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0)){
             this.gameObject.GetComponent<InteractionManager>().Activate();
+            this.gameObject.GetComponent<InteractionManager>().Pick();
+        }
 
         if(this.CanMove)    this.Attack(Input.GetMouseButtonDown(0));
         if(this.CanMove)    this.MovePosition(horizontal, vertical);

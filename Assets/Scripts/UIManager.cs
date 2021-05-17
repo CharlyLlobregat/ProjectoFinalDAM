@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
     public static UIManager Instance {get; private set;}
-    private void Start() => Instance = this;
 
     public Slider PlayerHealthBar;
     public Text PlayerrHealthText;
@@ -17,8 +16,13 @@ public class UIManager : MonoBehaviour {
     public Text PlayerExpText;
 
     public Stats.EntityStats PlayerStats;
-    // private WeaponManager weaponManager;
-    // private ItemsManager itemsManager;
+
+    private Color32 baseColor;
+
+    private void Start() {
+        Instance = this;
+        this.baseColor = new Color(1, 1, 1, 0.433f);
+    }
 
     public void UpdateExp(uint _currentEXP, uint _maxEXP) {
         System.Text.StringBuilder builder = new StringBuilder()
@@ -65,5 +69,35 @@ public class UIManager : MonoBehaviour {
         stats.transform.Find("Speed").GetComponent<Text>().text = builder.Append("Speed: ").Append(_item.Speed).ToString();       builder.Clear();
 
         this.transform.Find("ItemWindow").GetComponent<WindowController>().Show();
+    }
+
+    public void ResetWindows() {
+        for(int i = 0; i < this.transform.childCount; i++)
+            this.transform.GetChild(i).GetComponent<WindowController>().Show();
+    }
+
+    public void UpdateRed(string _red) {
+        _red = _red.Equals(string.Empty) ? "0" : _red;
+        byte temp = 0;
+        this.baseColor.r = byte.TryParse(_red, out temp) ? temp : byte.MaxValue;
+        UpdateColor(this.baseColor);
+    }
+    public void UpdateGreen(string _green) {
+        _green = _green.Equals(string.Empty) ? "0" : _green;
+        byte temp = 0;
+        this.baseColor.g = byte.TryParse(_green, out temp) ? temp : byte.MaxValue;
+        UpdateColor(this.baseColor);
+    }
+    public void UpdateBlue(string _blue) {
+        _blue = _blue.Equals(string.Empty) ? "0" : _blue;
+        byte temp = 0;
+        this.baseColor.b = byte.TryParse(_blue, out temp) ? temp : byte.MaxValue;
+        UpdateColor(this.baseColor);
+    }
+    public void UpdateColor(Color _rgb) {
+        this.baseColor = _rgb;
+
+        for (int i = 0; i < this.transform.childCount; i++)
+            this.transform.GetChild(i).GetComponent<Image>().color = _rgb;
     }
 }
