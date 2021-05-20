@@ -26,16 +26,20 @@ public class Inventory : MonoBehaviour {
 
     public List<(Stats.ItemStats Item, uint Amount)> Items {
         get {
-            return ItemManager.Instance.Items.Select<Stats.ItemStats, (Stats.ItemStats Item, uint Amount)>((x, pos) =>
-                this.amount[pos] > 0 ? (Item: x, Amount: this.amount[pos]) : (Item: null, Amount: uint.MinValue)
-            ).Where(x => x.Item != null && x.Amount > 0).ToList();
+            try{
+                return ItemManager.Instance.Items.Select<Stats.ItemStats, (Stats.ItemStats Item, uint Amount)>((x, pos) =>
+                    this.amount[pos] > 0 ? (Item: x, Amount: this.amount[pos]) : (Item: null, Amount: uint.MinValue)
+                )?.Where(x => x.Item != null && x.Amount > 0)?.ToList();
+            }catch{
+                return null;
+            }
         }
     }
     public List<(Stats.ItemStats Item, uint Amount)> Equiped {
         get {
-            return Items.Select<(ItemStats Item, uint Amount), (ItemStats Item, uint Amount)>((x, pos) =>
+            return Items?.Select<(ItemStats Item, uint Amount), (ItemStats Item, uint Amount)>((x, pos) =>
                 this.equiped[pos] ? x : (Item: null, Amount : 0)
-            ).Where(x => x.Item != null && x.Amount > 0).ToList();
+            )?.Where(x => x.Item != null && x.Amount > 0)?.ToList();
         }
     }
 
@@ -45,6 +49,7 @@ public class Inventory : MonoBehaviour {
     public List<uint> BaseItemId;
     public List<uint> EquipeItemId;
     public void AddItem(ItemStats _item) {
+        Debug.Log(this.amount);
         if(Items.Exists(x => x.Item.Id == _item.Id))    IncrementAmount(_item);
         else {
             this.amount[ItemManager.Instance.Items.FindIndex(x => x.Id == _item.Id)] = 1;

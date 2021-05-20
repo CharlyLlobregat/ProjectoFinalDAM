@@ -75,7 +75,8 @@ public class UIManager : MonoBehaviour {
 
     public void ResetWindows() {
         for(int i = 0; i < this.transform.childCount; i++)
-            this.transform.GetChild(i).GetComponent<WindowController>().Show();
+            if(this.transform.GetChild(i).name != "DialogueWindow")
+                this.transform.GetChild(i).GetComponent<WindowController>().Show();
     }
 
     public void UpdateRed(string _red) {
@@ -109,7 +110,7 @@ public class UIManager : MonoBehaviour {
     }
 
     public void StartDialogue(Dialogue.DialogueController _dialogue) {
-        Dialogue.DialogueManager.Instance.gameObject.SetActive(true);
+        Dialogue.DialogueManager.Instance.GetComponent<WindowController>().Show();
         Dialogue.DialogueManager.Instance.CurrentDialogue = _dialogue;
     }
 }

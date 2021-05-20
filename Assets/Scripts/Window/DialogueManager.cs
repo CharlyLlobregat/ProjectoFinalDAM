@@ -10,10 +10,21 @@ namespace Dialogue {
         private void Start() {
             Instance = this;
             NextDialogue.onClick.AddListener(() => {
-                if(this.currentDialogue.Sentences.Count > this.currentDialogue.currentSentence + 1)
+                if(this.currentDialogue.Sentences.Count > this.currentDialogue.currentSentence + 1){
                     this.currentDialogue.currentSentence++;
 
+                    for (int i = 1; i < Actions.transform.childCount; i++)
+                        Destroy(Actions.transform.GetChild(i).gameObject);
+                    this.currentDialogue.ActionsOnSentence.ForEach(x => {
+                        for (int i = 0; i < x; i++)
+                            Instantiate(
+                                this.currentDialogue.Actions[i],
+                                Actions.transform
+                            );
+                    });
+                }
             });
+
             if(DeltaLetter == 0)    DeltaLetter = 0.5f;
         }
 
@@ -41,6 +52,16 @@ namespace Dialogue {
                 this.currentLetter = 0;
                 this.currentDialogue.currentSentence = 0;
                 this.deltaLetterCounter = 0;
+
+                for (int i = 1; i < Actions.transform.childCount; i++)
+                    Destroy(Actions.transform.GetChild(i).gameObject);
+                this.currentDialogue.ActionsOnSentence.ForEach(x => {
+                    for (int i = 0; i < x; i++)
+                        Instantiate(
+                            this.currentDialogue.Actions[i],
+                            Actions.transform
+                        );
+                });
             }
         }
 

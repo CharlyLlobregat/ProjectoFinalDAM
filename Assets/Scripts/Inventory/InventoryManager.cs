@@ -86,7 +86,7 @@ public class InventoryManager : MonoBehaviour {
         InvSelect.GetComponentsInChildren<Toggle>().ToList().ForEach(x => Destroy(x.gameObject));
         EquipedSelect.GetComponentsInChildren<Toggle>().ToList().ForEach(x => Destroy(x.gameObject));
 
-        this.inv.Items.ForEach(x => {
+        this.inv.Items?.ForEach(x => {
             if(this.inv.Equiped.Contains(x) && x.Amount > 1) {
                 GameObject tempItem = Instantiate(
                     ItemInv,
@@ -113,7 +113,7 @@ public class InventoryManager : MonoBehaviour {
         });
 
         Debug.Log("Filling");
-        this.inv.Equiped.ForEach(x => {
+        this.inv.Equiped?.ForEach(x => {
             GameObject tempItem = Instantiate(
                 ItemInv,
                 EquipedSelect.transform

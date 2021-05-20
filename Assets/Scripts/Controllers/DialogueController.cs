@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Dialogue {
-    public class DialogueController : MonoBehaviour {
+    public class DialogueController: MonoBehaviour {
         public List<string> Sentences;
         public uint currentSentence;
 
-        public List<uint> SentenceWithAction;
         public List<uint> ActionsOnSentence;
-        public List<DialogueAction> ActionOnSentence;
+        public List<DialogueAction> Actions;
     }
 }

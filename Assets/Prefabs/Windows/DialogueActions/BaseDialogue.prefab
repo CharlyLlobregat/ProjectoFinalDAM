@@ -46,7 +46,5 @@ MonoBehaviour:
   Sentences:
   - Hello How are you there, what's going on? Tell me more about it
   currentSentence: 0
-  SentenceWithAction: 01000000
-  ActionsOnSentence: 01000000
-  ActionOnSentence:
-  - {fileID: 0}
+  ActionsOnSentence: 
+  Actions: []
