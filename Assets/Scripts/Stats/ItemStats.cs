@@ -20,7 +20,7 @@ namespace Stats {
             this.Type = _item.Type;
             this.Weapon = _item.Weapon;
 
-            base.Reset(_item);
+            base.ResetValues(_item);
         }
 
         public enum ItemType {

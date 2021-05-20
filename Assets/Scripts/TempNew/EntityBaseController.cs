@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Stats;
 using Interaction;
+using Inventory;
 using System.Linq;
 
 namespace Controller {
@@ -13,14 +14,14 @@ namespace Controller {
      */
 
     [RequireComponent(typeof(Rigidbody2D))]
-    [RequireComponent(typeof(Inventory))]
+    [RequireComponent(typeof(Inventory.Inventory))]
     [RequireComponent(typeof(EntityStats))]
     [RequireComponent(typeof(SpriteRenderer))]
     [RequireComponent(typeof(Interaction.InteractionController))]
     [RequireComponent(typeof(Interaction.InteractionManager))]
     [RequireComponent(typeof(Animator))]
     public class EntityBaseController : MonoBehaviour {
-        protected Inventory inv;
+        protected Inventory.Inventory inv;
         protected Rigidbody2D rigidBody;
         protected EntityStats stats;
         protected Interaction.InteractionController interact;
@@ -85,7 +86,7 @@ namespace Controller {
                     UIManager.Instance.CreateDamageNumber(this.transform.position, totalDamage);
         }
         public void Picked(EntityStats _by) {
-            if(_by.TryGetComponent<Inventory>(out Inventory inv)) {
+            if(_by.TryGetComponent<Inventory.Inventory>(out Inventory.Inventory inv)) {
                 this.inv.Items.ForEach(x => {
                     for(int i = 0; i < x.Amount; i++)
                         inv.AddItem(ItemManager.Instance.GetItem(x.Item));
@@ -184,10 +185,8 @@ namespace Controller {
             Destroy(this.gameObject);
         }
 
-
-
         private void Awake() {
-            this.inv = GetComponent<Inventory>();
+            this.inv = GetComponent<Inventory.Inventory>();
             this.rigidBody = GetComponent<Rigidbody2D>();
             this.stats = GetComponent<Stats.EntityStats>();
             this.interact = GetComponent<Interaction.InteractionController>();

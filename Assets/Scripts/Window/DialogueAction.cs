@@ -23,7 +23,7 @@ namespace Dialogue {
         }
 
         public void GivePlayerItem(Stats.ItemStats _item) {
-            GameObject.Find("Player").GetComponent<Inventory>().AddItem(_item);
+            GameObject.Find("Player").GetComponent<Inventory.Inventory>().AddItem(_item);
         }
     }
 }

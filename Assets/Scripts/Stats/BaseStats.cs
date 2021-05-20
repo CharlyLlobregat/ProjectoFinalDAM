@@ -26,7 +26,7 @@ namespace Stats {
         public string Name;
 
         public OnLevelChange OnLevelChange;
-        public void Reset(BaseStats _base) {
+        public void ResetValues(BaseStats _base) {
             this.lvl = _base.lvl;
 
             this.Strength = _base.Strength;

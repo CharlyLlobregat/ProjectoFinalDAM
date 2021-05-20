@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Managers;
+using Inventory;
 
 [RequireComponent(typeof(SettingsManager))]
 [RequireComponent(typeof(ItemManager))]
