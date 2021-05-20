@@ -168,19 +168,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe62e602fdbfdbd419c94d6d0e9212d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentDialogue:
-    Sentences: []
-    currentSentence: 0
-    SentenceWithAction: 
-    ActionOnSentence:
-    - Name: 
-      Option: {fileID: 0}
-      Action:
-        m_PersistentCalls:
-          m_Calls: []
+  currentDialogue: {fileID: 0}
   NextDialogue: {fileID: 3167115839943697658}
   Action: {fileID: 2304128436328892467, guid: b840f3312e408a743a0d15a9561d4113, type: 3}
-  DeltaLetter: 0
+  Sentences: {fileID: 226027397}
+  Actions: {fileID: 184640844}
+  DeltaLetter: 0.05
 --- !u!1001 &2101575444906800389
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -208,7 +201,7 @@ PrefabInstance:
     - target: {fileID: 2464827009105220071, guid: 1516eeec8d28c944e95e6fa68c341022,
         type: 3}
       propertyPath: m_Size
-      value: 0.9999998
+      value: 0.9999999
       objectReference: {fileID: 0}
     - target: {fileID: 2464827009105220071, guid: 1516eeec8d28c944e95e6fa68c341022,
         type: 3}
@@ -383,12 +376,12 @@ PrefabInstance:
     - target: {fileID: 6451947209613176850, guid: 1516eeec8d28c944e95e6fa68c341022,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 395
+      value: -687
       objectReference: {fileID: 0}
     - target: {fileID: 6451947209613176850, guid: 1516eeec8d28c944e95e6fa68c341022,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 433
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 6451947209613176850, guid: 1516eeec8d28c944e95e6fa68c341022,
         type: 3}
@@ -448,12 +441,12 @@ PrefabInstance:
     - target: {fileID: 6531980551615554422, guid: 1516eeec8d28c944e95e6fa68c341022,
         type: 3}
       propertyPath: m_Size
-      value: 0.99999994
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6531980551615554422, guid: 1516eeec8d28c944e95e6fa68c341022,
         type: 3}
       propertyPath: m_Value
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7681134985332844407, guid: 1516eeec8d28c944e95e6fa68c341022,
         type: 3}

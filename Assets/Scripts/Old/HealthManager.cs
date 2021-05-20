@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthManager : MonoBehaviour {
+/*public class HealthManager : MonoBehaviour {
     public int MaxHealth = 5;
 
     [SerializeField]
@@ -19,25 +19,25 @@ public class HealthManager : MonoBehaviour {
     public float InvulTime;
     private float deltaInvul;
 
-    private SpriteRenderer renderer;
+    private SpriteRenderer spriteRenderer;
 
     private void Start() {
         CurrentHealth = MaxHealth;
-        this.renderer = GetComponentInChildren<SpriteRenderer>();
+        this.spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     public void Damage(int _damage) {
         CurrentHealth -= _damage;
 
         if(currentHealth <= 0) {
-            if (gameObject.tag.Equals("Enemy")) {
+            if (gameObject.CompareTag("Enemy")) {
                 GameObject
                     .Find("Player")
                     .GetComponent<Stats.EntityStats>()
                     .AddExp(gameObject.GetComponent<Stats.EntityStats>().EXP);
 
                 // questManager.enemyKilled = quest;
-            }else if (gameObject.tag.Equals("Player")) {
+            }else if (gameObject.CompareTag("Player")) {
                 //GameOver
             }
 
@@ -59,10 +59,10 @@ public class HealthManager : MonoBehaviour {
 
 
     private void Flash(bool _flash) {
-        this.renderer.color = new Color(
-            this.renderer.color.r,
-            this.renderer.color.g,
-            this.renderer.color.b,
+        this.spriteRenderer.color = new Color(
+            this.spriteRenderer.color.r,
+            this.spriteRenderer.color.g,
+            this.spriteRenderer.color.b,
             (_flash ?  1.0f : 0.0f)
         );
     }
@@ -85,3 +85,4 @@ public class HealthManager : MonoBehaviour {
         }
     }
 }
+*/

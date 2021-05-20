@@ -5,20 +5,20 @@ using UnityEngine;
 namespace Stats {
     [RequireComponent(typeof(SpriteRenderer))]
     public class ItemStats : BaseStats {
+        [Header("Item Stats")]
         public uint Id;
-        public string Name;
 
         public int MaxStackSize;
-        public int CurrentAmount;
         public ItemType Type;
+        public WeaponType Weapon;
 
         public void OpenItemUI() => UIManager.Instance.ItemUI(this);
         public void Reset(ItemStats _item) {
             this.Id = _item.Id;
             this.Name = _item.Name;
             this.MaxStackSize = _item.MaxStackSize;
-            this.CurrentAmount = _item.CurrentAmount;
             this.Type = _item.Type;
+            this.Weapon = _item.Weapon;
 
             base.Reset(_item);
         }
@@ -27,6 +27,12 @@ namespace Stats {
             Weapon,
             Consumable,
             Miscelaneous
+        }
+        public enum WeaponType {
+            None,
+            Sword,
+            Arc,
+            Arrow
         }
     }
 }

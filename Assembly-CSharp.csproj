@@ -65,13 +65,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
+    <Compile Include="Assets\Scripts\Controllers\BaseController.cs" />
     <Compile Include="Assets\Scripts\Controllers\DialogueController.cs" />
     <Compile Include="Assets\Scripts\Controllers\EnemyController.cs" />
-    <Compile Include="Assets\Scripts\Controllers\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\NPCController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\PlayerController2.cs" />
     <Compile Include="Assets\Scripts\DamageNumber.cs" />
     <Compile Include="Assets\Scripts\DamagePlayer.cs" />
     <Compile Include="Assets\Scripts\DragDrop.cs" />
+    <Compile Include="Assets\Scripts\DynamicSprite.cs" />
+    <Compile Include="Assets\Scripts\EnemyHealthBar.cs" />
+    <Compile Include="Assets\Scripts\EntityManager.cs" />
     <Compile Include="Assets\Scripts\GameConstants.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\InteractDoor.cs" />
     <Compile Include="Assets\Scripts\Interactions\InteractDoor.cs" />
     <Compile Include="Assets\Scripts\Interactions\InteractionController.cs" />
@@ -86,15 +92,21 @@
     <Compile Include="Assets\Scripts\Old\HealthManager.cs" />
     <Compile Include="Assets\Scripts\Old\InteractionManager2.cs" />
     <Compile Include="Assets\Scripts\Old\Stats.cs" />
-    <Compile Include="Assets\Scripts\PlayerSprite.cs" />
+    <Compile Include="Assets\Scripts\SettingsManager.cs" />
     <Compile Include="Assets\Scripts\Stats\BaseStats.cs" />
     <Compile Include="Assets\Scripts\Stats\EntityStats.cs" />
     <Compile Include="Assets\Scripts\Stats\ItemStats.cs" />
     <Compile Include="Assets\Scripts\TeleportPoint.cs" />
     <Compile Include="Assets\Scripts\TeleportPoint2Way.cs" />
+    <Compile Include="Assets\Scripts\TempNew\ArrowController.cs" />
+    <Compile Include="Assets\Scripts\TempNew\EntityBaseController.cs" />
+    <Compile Include="Assets\Scripts\TempNew\InteractionController.cs" />
+    <Compile Include="Assets\Scripts\TempNew\InteractionManager.cs" />
+    <Compile Include="Assets\Scripts\TempNew\PlayerController.cs" />
     <Compile Include="Assets\Scripts\UIManager.cs" />
     <Compile Include="Assets\Scripts\WeaponDamage.cs" />
     <Compile Include="Assets\Scripts\WeaponManager.cs" />
+    <Compile Include="Assets\Scripts\Window\DialogueAction.cs" />
     <Compile Include="Assets\Scripts\Window\DialogueManager.cs" />
     <Compile Include="Assets\Scripts\Window\ScaleWindow.cs" />
     <Compile Include="Assets\Scripts\Window\WindowController.cs" />

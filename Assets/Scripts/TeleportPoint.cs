@@ -27,14 +27,14 @@ namespace Teleport {
 
         private void OnTriggerEnter2D(Collider2D other) {
             if (ShouldTeleport)
-                if(!AllowNotPlayers && other.tag == "Player")       Move(other.gameObject, TeleportOutput);
-                else if(AllowNotPlayers && (other.tag == "NPC" || other.tag == "Player"))   Move(other.gameObject, TeleportOutput);
+                if(!AllowNotPlayers && other.CompareTag("Player"))       Move(other.gameObject, TeleportOutput);
+                else if(AllowNotPlayers && (other.CompareTag("NPC") || other.CompareTag("Player")))   Move(other.gameObject, TeleportOutput);
         }
 
         private void Move(GameObject _gameObject, Transform _position) {
             _gameObject.transform.position = _position.position;
 
-            if(_gameObject.tag == "Player")
+            if(_gameObject.CompareTag("Player"))
                 Camera.main.transform.position = new Vector3(
                     _position.position.x,
                     _position.position.y,

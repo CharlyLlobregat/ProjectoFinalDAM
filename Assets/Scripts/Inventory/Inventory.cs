@@ -5,31 +5,102 @@ using System.Linq;
 using Stats;
 
 public class Inventory : MonoBehaviour {
-    public WeaponDamage Weapon;
+    private void Awake() {
+        this.amount = new List<uint>(ItemManager.Instance.Items.Count);
+        this.equiped = new List<bool>(ItemManager.Instance.Items.Count);
 
-    public List<Stats.ItemStats> Items;
-    public List<Stats.ItemStats> EquipedItems;
+        ItemManager.Instance.Items.ForEach(_ => {
+            this.amount.Add(0);
+            this.equiped.Add(false);
+        });
 
-    /*public List<(Stats.ItemStats, uint)> EquipedItems {
-        get {
-            return ItemManager.Instance.Items.Select<Stats.ItemStats, (ItemStats, uint)>((x, pos) => {
-                return this.equiped[pos] ? (x, uint.MinValue) : (null, 0);
-            }).Where(x => x.Item1 != null).ToList();
-        }
-        set {
-            EquipedItems = value;
-        }
-    }
-    */
-    private List<bool> equiped;
-    private List<uint> amount;
-
-    private void Start() {
-        ItemManager.Instance.Items.ForEach(x => {
-            Items.Add(x);
+        this.BaseItemId.ForEach(x => {
+            for(int i = 0; i < ItemManager.Instance.Items.Count; i++)
+                if(ItemManager.Instance.Items[i].Id == x)
+                    this.amount[i]++;
+        });
+        this.EquipeItemId.ForEach(x => {
+            Equipe(ItemManager.Instance.Items.First(y => y.Id == x));
         });
     }
 
+    public List<(Stats.ItemStats Item, uint Amount)> Items {
+        get {
+            return ItemManager.Instance.Items.Select<Stats.ItemStats, (Stats.ItemStats Item, uint Amount)>((x, pos) =>
+                this.amount[pos] > 0 ? (Item: x, Amount: this.amount[pos]) : (Item: null, Amount: uint.MinValue)
+            ).Where(x => x.Item != null && x.Amount > 0).ToList();
+        }
+    }
+    public List<(Stats.ItemStats Item, uint Amount)> Equiped {
+        get {
+            return Items.Select<(ItemStats Item, uint Amount), (ItemStats Item, uint Amount)>((x, pos) =>
+                this.equiped[pos] ? x : (Item: null, Amount : 0)
+            ).Where(x => x.Item != null && x.Amount > 0).ToList();
+        }
+    }
+
+    private List<bool> equiped;
+    private List<uint> amount;
+
+    public List<uint> BaseItemId;
+    public List<uint> EquipeItemId;
+    public void AddItem(ItemStats _item) {
+        if(Items.Exists(x => x.Item.Id == _item.Id))    IncrementAmount(_item);
+        else {
+            this.amount[ItemManager.Instance.Items.FindIndex(x => x.Id == _item.Id)] = 1;
+            OnInventoryChange?.Invoke();
+            OnItemAdd?.Invoke(_item, 1);
+        }
+    }
+
+    public void RemoveItem(ItemStats _item) {
+        if(Items.Exists(x => x.Item.Id == _item.Id))    DecrementAmount(_item);
+    }
+
+    public void IncrementAmount(ItemStats _item) {
+        uint amount = ++this.amount[ItemManager.Instance.Items.FindIndex(x => x.Id == _item.Id)];
+        OnItemAdd?.Invoke(_item, amount);
+        OnInventoryChange?.Invoke();
+    }
+
+    public void DecrementAmount(ItemStats _item) {
+        int pos = ItemManager.Instance.Items.FindIndex(x => x.Id == _item.Id);
+        if(this.amount[pos] == 0) return;
+
+        uint amount = --this.amount[pos];
+        OnItemRemove?.Invoke(_item, amount);
+        OnInventoryChange?.Invoke();
+    }
+
+    public void Equipe(ItemStats _item) {
+        switch (_item.Type) {
+            case ItemStats.ItemType.Weapon:
+                if(Equiped.Exists(x => x.Item.Type == ItemStats.ItemType.Weapon)) return;
+
+                IsWeaponEquiped?.Invoke(_item.GetComponent<SpriteRenderer>().sprite, true);
+                break;
+            case ItemStats.ItemType.Miscelaneous:
+                break;
+        }
+
+        this.equiped[ItemManager.Instance.Items.FindIndex(x => x.Id == _item.Id)] = true;
+        OnItemEquiped?.Invoke(_item);
+        OnInventoryChange?.Invoke();
+    }
+
+    public void Unequipe(ItemStats _item) {
+        switch (_item.Type) {
+            case ItemStats.ItemType.Weapon:
+                IsWeaponEquiped?.Invoke(null, false);
+                break;
+        }
+
+        this.equiped[Items.FindIndex(x => x.Item.Id == _item.Id)] = false;
+        OnItemUnequiped?.Invoke(_item);
+        OnInventoryChange?.Invoke();
+    }
+
+    /*
     public void DecreaseAmount(Stats.ItemStats _item) {
         Stats.ItemStats temp = GetItem(_item) ?? GetEquiped(_item);
         if (temp != null && temp.CurrentAmount - 1 > 0){
@@ -95,6 +166,18 @@ public class Inventory : MonoBehaviour {
 
         if (OnInventoryChange != null) OnInventoryChange.Invoke();
     }
+    */
 
     public UnityEngine.Events.UnityEvent OnInventoryChange;
+    public ItemAddEvent OnItemAdd;
+    public ItemRemoveEvent OnItemRemove;
+    public ItemEquipedEvent OnItemEquiped;
+    public ItemUnequipedEvent OnItemUnequiped;
+    public WeaponEquipedEvent IsWeaponEquiped;
+
+    [System.Serializable] public class ItemAddEvent : UnityEngine.Events.UnityEvent<ItemStats, uint>{}
+    [System.Serializable] public class ItemRemoveEvent : UnityEngine.Events.UnityEvent<ItemStats, uint>{}
+    [System.Serializable] public class ItemEquipedEvent : UnityEngine.Events.UnityEvent<ItemStats>{ }
+    [System.Serializable] public class ItemUnequipedEvent : UnityEngine.Events.UnityEvent<ItemStats>{ }
+    [System.Serializable] public class WeaponEquipedEvent : UnityEngine.Events.UnityEvent<Sprite, bool>{ }
 }

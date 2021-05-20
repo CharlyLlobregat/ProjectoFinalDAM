@@ -4,7 +4,11 @@ using UnityEngine;
 
 namespace Dialogue {
     public class DialogueController : MonoBehaviour {
-        public Dialogue Dialogue;
+        public List<string> Sentences;
+        public uint currentSentence;
 
+        public List<uint> SentenceWithAction;
+        public List<uint> ActionsOnSentence;
+        public List<DialogueAction> ActionOnSentence;
     }
 }

@@ -17,6 +17,8 @@ public class UIManager : MonoBehaviour {
 
     public Stats.EntityStats PlayerStats;
 
+    public Canvas DamageCanvas;
+
     private Color32 baseColor;
 
     private void Start() {
@@ -78,20 +80,17 @@ public class UIManager : MonoBehaviour {
 
     public void UpdateRed(string _red) {
         _red = _red.Equals(string.Empty) ? "0" : _red;
-        byte temp = 0;
-        this.baseColor.r = byte.TryParse(_red, out temp) ? temp : byte.MaxValue;
+        this.baseColor.r = byte.TryParse(_red, out byte temp) ? temp : byte.MaxValue;
         UpdateColor(this.baseColor);
     }
     public void UpdateGreen(string _green) {
         _green = _green.Equals(string.Empty) ? "0" : _green;
-        byte temp = 0;
-        this.baseColor.g = byte.TryParse(_green, out temp) ? temp : byte.MaxValue;
+        this.baseColor.g = byte.TryParse(_green, out byte temp) ? temp : byte.MaxValue;
         UpdateColor(this.baseColor);
     }
     public void UpdateBlue(string _blue) {
         _blue = _blue.Equals(string.Empty) ? "0" : _blue;
-        byte temp = 0;
-        this.baseColor.b = byte.TryParse(_blue, out temp) ? temp : byte.MaxValue;
+        this.baseColor.b = byte.TryParse(_blue, out byte temp) ? temp : byte.MaxValue;
         UpdateColor(this.baseColor);
     }
     public void UpdateColor(Color _rgb) {
@@ -99,5 +98,18 @@ public class UIManager : MonoBehaviour {
 
         for (int i = 0; i < this.transform.childCount; i++)
             this.transform.GetChild(i).GetComponent<Image>().color = _rgb;
+    }
+
+    public void CreateDamageNumber(Vector3 _position, uint _damage) {
+        Instantiate(
+            DamageCanvas.gameObject,
+            _position,
+            Quaternion.Euler(Vector3.zero)
+        ).GetComponent<DamageNumber>().DamagePoints = _damage;
+    }
+
+    public void StartDialogue(Dialogue.DialogueController _dialogue) {
+        Dialogue.DialogueManager.Instance.gameObject.SetActive(true);
+        Dialogue.DialogueManager.Instance.CurrentDialogue = _dialogue;
     }
 }

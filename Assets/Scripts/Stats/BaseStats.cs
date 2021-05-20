@@ -11,23 +11,28 @@ namespace Stats {
             set {
                 this.lvl = value;
 
-                if(OnLevelChange != null)   OnLevelChange.Invoke(this.lvl);
+                OnLevelChange?.Invoke(this.lvl);
             }
         }
+        [Header("BaseStats")]
         [SerializeField] private uint lvl = 1;
-        public OnLevelChange OnLevelChange;
         #endregion
 
         public uint Strength;
         public uint Defense;
         public uint Speed;
+        public uint AttackSpeed;
 
+        public string Name;
+
+        public OnLevelChange OnLevelChange;
         public void Reset(BaseStats _base) {
             this.lvl = _base.lvl;
 
             this.Strength = _base.Strength;
             this.Defense = _base.Defense;
             this.Speed = _base.Speed;
+            this.AttackSpeed = _base.AttackSpeed;
         }
     }
 

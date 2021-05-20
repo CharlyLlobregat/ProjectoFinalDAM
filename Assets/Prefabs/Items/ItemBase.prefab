@@ -10,9 +10,15 @@ GameObject:
   m_Component:
   - component: {fileID: 3506967108530445632}
   - component: {fileID: 2378485329672732380}
-  - component: {fileID: 2310146914259558985}
-  - component: {fileID: 9216775187030046295}
   - component: {fileID: 8456199173349901040}
+  - component: {fileID: -5205566436938438341}
+  - component: {fileID: 9203610178491095994}
+  - component: {fileID: 8960147378338403339}
+  - component: {fileID: 9158615175245205086}
+  - component: {fileID: 2553925169721446334}
+  - component: {fileID: 3241278907956933313}
+  - component: {fileID: 5732714447662352346}
+  - component: {fileID: 1268901086963807480}
   m_Layer: 0
   m_Name: ItemBase
   m_TagString: Untagged
@@ -85,54 +91,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2310146914259558985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3595993777668990696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5074d1b9d802dfe4d8367166a45d413e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lvl: 1
-  OnLevelChange:
-    m_PersistentCalls:
-      m_Calls: []
-  Strength: 0
-  Defense: 0
-  Speed: 0
-  Id: 0
-  Name: 
-  MaxStackSize: 1
-  CurrentAmount: 1
-  Type: 0
---- !u!114 &9216775187030046295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3595993777668990696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 100ea67d240105745a0823658c2df264, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InteractionPoint: {fileID: 3506967108530445632}
-  CanActivate: 0
-  CanPlace: 0
-  CanPick: 1
-  CanAttack: 0
-  CanTalk: 0
-  ActivateAction:
-    m_PersistentCalls:
-      m_Calls: []
-  PlaceAction:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!58 &8456199173349901040
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -149,3 +107,249 @@ CircleCollider2D:
   m_Offset: {x: -0.125, y: 0.125}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &-5205566436938438341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3595993777668990696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3231db64ce034ad45aa4a17f66ec54e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InteractionPoint: {fileID: 0}
+  CanActivate: 0
+  CanPlace: 0
+  CanPick: 0
+  CanAttack: 0
+  CanTalk: 0
+  CanMove: 0
+  CanUse: 0
+  CanBeActivated: 0
+  CanBePlaced: 0
+  CanBePicked: 1
+  CanBeAttacked: 0
+  CanBeTalked: 0
+  CanBeMoved: 0
+  CanBeUsed: 0
+  isMoving: 0
+  isTalking: 0
+  isAttacking: 0
+  OnIsMovingChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnIsTalkingChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnIsAttakingChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMove:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMoveTo:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPick:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTalk:
+    m_PersistentCalls:
+      m_Calls: []
+  OnUse:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPlace:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAttacked:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPicked:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5732714447662352346}
+        m_MethodName: Picked
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnTalked:
+    m_PersistentCalls:
+      m_Calls: []
+  OnUsed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPlaced:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &9203610178491095994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3595993777668990696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f53b725481ac93498a5c7f6328668f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Interactables: []
+--- !u!50 &8960147378338403339
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3595993777668990696}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!114 &9158615175245205086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3595993777668990696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46104545be437a744a0db25401c1229d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BaseItemId: 
+  OnInventoryChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnItemAdd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnItemRemove:
+    m_PersistentCalls:
+      m_Calls: []
+  OnItemEquiped:
+    m_PersistentCalls:
+      m_Calls: []
+  OnItemUnequiped:
+    m_PersistentCalls:
+      m_Calls: []
+  IsWeaponEquiped:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &2553925169721446334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3595993777668990696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fd134d5115183c4288bbf87db24762d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lvl: 1
+  Strength: 0
+  Defense: 0
+  Speed: 0
+  AttackSpeed: 0
+  Name: 
+  OnLevelChange:
+    m_PersistentCalls:
+      m_Calls: []
+  IsPlayer: 0
+  exp: 0
+  statPoints: 0
+  StatsPerLvl: 10
+  hp: 10
+  currentHp: 10
+  OnStatPointsChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHealthChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDead:
+    m_PersistentCalls:
+      m_Calls: []
+  OnExpChange:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!95 &3241278907956933313
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3595993777668990696}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5732714447662352346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3595993777668990696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0ad13a51b535ec42a12a9877e94b368, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1268901086963807480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3595993777668990696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5074d1b9d802dfe4d8367166a45d413e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lvl: 1
+  Strength: 0
+  Defense: 0
+  Speed: 0
+  AttackSpeed: 0
+  Name: ItemBase
+  OnLevelChange:
+    m_PersistentCalls:
+      m_Calls: []
+  Id: 0
+  MaxStackSize: 0
+  Type: 0
+  Weapon: 0

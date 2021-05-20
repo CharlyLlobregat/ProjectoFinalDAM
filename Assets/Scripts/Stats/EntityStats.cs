@@ -6,10 +6,10 @@ using UnityEngine;
 namespace Stats {
     public class EntityStats : BaseStats {
         private void Start() {
-            if (OnExpChange != null) OnExpChange.Invoke(this.exp, ExpPerLvl(Level));
-            if (OnStatPointsChange != null) OnStatPointsChange.Invoke(this.statPoints);
-            if (OnHealthChange != null) OnHealthChange.Invoke(this.currentHp, this.hp);
-            if (OnLevelChange != null) OnLevelChange.Invoke(this.Level);
+            OnExpChange?.Invoke(this.exp, ExpPerLvl(Level));
+            OnStatPointsChange?.Invoke(this.statPoints);
+            OnHealthChange?.Invoke(this.currentHp, this.hp);
+            OnLevelChange?.Invoke(this.Level);
         }
         #region EXP
         public uint EXP {
@@ -22,16 +22,14 @@ namespace Stats {
                     this.LevelUp();
                 }
 
-                if (OnExpChange != null) OnExpChange.Invoke(this.exp, ExpPerLvl(Level));
+                OnExpChange?.Invoke(this.exp, ExpPerLvl(Level));
             }
         }
+        [Header("Entity Stats")]
+        public bool IsPlayer = false;
         [SerializeField] private uint exp;
 
-        public Func<uint, uint> ExpPerLvl = (lvl) => {
-            return lvl * 100;
-        };
-
-        public OnExpChange OnExpChange;
+        public Func<uint, uint> ExpPerLvl = (lvl) => lvl * 100;
 
         public void AddExp(uint _exp) {
             EXP += _exp;
@@ -48,7 +46,7 @@ namespace Stats {
             set {
                 this.statPoints = value;
 
-                if (OnStatPointsChange != null) OnStatPointsChange.Invoke(this.statPoints);
+                OnStatPointsChange?.Invoke(this.statPoints);
             }
         }
 
@@ -56,7 +54,6 @@ namespace Stats {
 
         public uint StatsPerLvl = 10;
 
-        public OnStatPointsChange OnStatPointsChange;
 
         public void AddStats(uint _stats) {
             StatPoints += _stats;
@@ -77,21 +74,24 @@ namespace Stats {
                 if (value > this.hp) this.currentHp = this.hp;
                 else this.currentHp = value;
 
-                if (OnHealthChange != null) OnHealthChange.Invoke(this.currentHp, this.hp);
+                OnHealthChange?.Invoke(this.currentHp, this.hp);
             }
         }
 
         public void Heal(uint _amount) => CurrentHealth += _amount;
         public void ReduceHealth(uint _amount) {
             if ((int)(this.currentHp - _amount) <= 0) {
-                this.currentHp = 0;
-                if (OnDead != null) OnDead.Invoke();
+                CurrentHealth = 0;
+                OnDead?.Invoke();
             } else
-                this.currentHp -= _amount;
+                CurrentHealth -= _amount;
         }
 
+        #endregion
+
+        public OnStatPointsChange OnStatPointsChange;
         public OnHealthChange OnHealthChange;
         public OnDead OnDead;
-        #endregion
+        public OnExpChange OnExpChange;
     }
 }
