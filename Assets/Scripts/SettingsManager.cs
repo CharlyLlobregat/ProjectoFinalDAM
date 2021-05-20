@@ -24,4 +24,15 @@ public class SettingsManager : MonoBehaviour {
     public KeyCode Down = KeyCode.S;
     public KeyCode Left = KeyCode.A;
     public KeyCode Right = KeyCode.D;
+
+    public enum KeyBind {
+        Attack,
+        Pick,
+        Activate,
+        Talk,
+        Up,
+        Down,
+        Left,
+        Right
+    }
 }

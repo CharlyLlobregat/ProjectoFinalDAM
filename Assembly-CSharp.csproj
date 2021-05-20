@@ -92,6 +92,7 @@
     <Compile Include="Assets\Scripts\Old\HealthManager.cs" />
     <Compile Include="Assets\Scripts\Old\InteractionManager2.cs" />
     <Compile Include="Assets\Scripts\Old\Stats.cs" />
+    <Compile Include="Assets\Scripts\ProcessKeyPress.cs" />
     <Compile Include="Assets\Scripts\SettingsManager.cs" />
     <Compile Include="Assets\Scripts\Stats\BaseStats.cs" />
     <Compile Include="Assets\Scripts\Stats\EntityStats.cs" />

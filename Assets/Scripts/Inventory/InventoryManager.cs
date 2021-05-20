@@ -7,7 +7,6 @@ using Stats;
 
 public class InventoryManager : MonoBehaviour {
     public static InventoryManager Instance {get; private set;}
-    private void Awake() => Instance = this;
 
     public ToggleGroup InvSelect;
     public ToggleGroup EquipedSelect;
@@ -20,7 +19,8 @@ public class InventoryManager : MonoBehaviour {
 
     private Inventory inv;
 
-    private void Start() {
+    private void Awake() {
+        Instance = this;
         this.inv = GameObject.Find("Player").GetComponent<Inventory>();
         this.Fill();
     }

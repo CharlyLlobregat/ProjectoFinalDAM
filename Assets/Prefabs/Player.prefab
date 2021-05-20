@@ -216,6 +216,11 @@ PrefabInstance:
       propertyPath: Strength
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7549340019148319959, guid: 5e52287e08fe196448646cedbddfe7fd,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 7549340019389930853, guid: 5e52287e08fe196448646cedbddfe7fd,
         type: 3}
       propertyPath: m_IsActive
