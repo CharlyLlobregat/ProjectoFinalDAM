@@ -29,5 +29,10 @@ namespace Controller {
             Instance = this;
             GameObject.Find("Main Camera").GetComponent<CameraFollow>().Target = this.gameObject;
         }
+
+        public override void Kill() {
+            base.Kill();
+            UIManager.Instance.ShowGameOver(false);
+        }
     }
 }

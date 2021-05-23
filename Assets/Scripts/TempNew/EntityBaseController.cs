@@ -202,7 +202,7 @@ namespace Controller {
             weapon.SetActive(_active);
             if (weapon.TryGetComponent<SpriteRenderer>(out SpriteRenderer renderer)) renderer.sprite = _sprite;
         }
-        public void Kill() {
+        public virtual void Kill() {
             Managers.EntityManager.Instance.CurrentEntities.Remove(this.GetComponent<EntityStats>());
             Destroy(this.gameObject);
         }

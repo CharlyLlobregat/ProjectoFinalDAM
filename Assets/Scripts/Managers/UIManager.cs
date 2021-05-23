@@ -28,6 +28,8 @@ public class UIManager : MonoBehaviour {
     public WindowController SettingsWindow;
     public WindowController PauseMenu;
     public WindowController MainMenu;
+    public WindowController GameOver;
+    public WindowController Credits;
 
     private void Awake() {
         Instance = this;
@@ -154,8 +156,41 @@ public class UIManager : MonoBehaviour {
     }
 
     public void GoToMenu() {
+        StatWindow.gameObject.SetActive(false);
+        InventoryWindow.gameObject.SetActive(false);
+        ItemWindow.gameObject.SetActive(false);
+        DialogueWindow.gameObject.SetActive(false);
+        SettingsWindow.gameObject.SetActive(false);
+        PauseMenu.gameObject.SetActive(false);
+        GameOver.gameObject.SetActive(false);
+
         MainMenu.gameObject.SetActive(true);
 
         MainMenu.transform.Find("StartBtn").gameObject.SetActive(System.IO.File.Exists(Application.persistentDataPath + "/save.dat"));
+    }
+
+    public void ShowGameOver(bool _isGood) {
+        StatWindow.gameObject.SetActive(false);
+        InventoryWindow.gameObject.SetActive(false);
+        ItemWindow.gameObject.SetActive(false);
+        DialogueWindow.gameObject.SetActive(false);
+        SettingsWindow.gameObject.SetActive(false);
+        PauseMenu.gameObject.SetActive(false);
+        GameOver.gameObject.SetActive(false);
+
+        GameOver.transform.Find("GameEnd").GetComponent<Text>().text = (_isGood ? "You Won!!" : "You Lost!!");
+        GameOver.transform.gameObject.SetActive(true);
+    }
+
+    public void ShowCredits() {
+        StatWindow.gameObject.SetActive(false);
+        InventoryWindow.gameObject.SetActive(false);
+        ItemWindow.gameObject.SetActive(false);
+        DialogueWindow.gameObject.SetActive(false);
+        SettingsWindow.gameObject.SetActive(false);
+        PauseMenu.gameObject.SetActive(false);
+        GameOver.gameObject.SetActive(false);
+
+        Credits.gameObject.SetActive(true);
     }
 }
