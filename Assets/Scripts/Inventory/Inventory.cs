@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using Stats;
+using System.IO;
 
 namespace Inventory {
-    public class Inventory : MonoBehaviour {
+    public class Inventory : MonoBehaviour, ISave {
         private void Awake() {
             this.amount = new List<uint>(ItemManager.Instance.Items.Count);
             this.equiped = new List<bool>(ItemManager.Instance.Items.Count);
@@ -18,10 +19,21 @@ namespace Inventory {
             this.BaseItemId.ForEach(x => {
                 for(int i = 0; i < ItemManager.Instance.Items.Count; i++)
                     if(ItemManager.Instance.Items[i].Id == x)
-                        this.amount[i]++;
+                        this.amount[i] = this.amount[i] + 1;
             });
             this.EquipeItemId.ForEach(x => {
-                Equipe(ItemManager.Instance.Items.First(y => y.Id == x));
+                var _item = ItemManager.Instance.Items.First(y => y.Id == x);
+                switch (_item.Type) {
+                    case ItemStats.ItemType.Weapon:
+                        if (Equiped.Exists(z => z.Item.Type == ItemStats.ItemType.Weapon)) return;
+
+                        IsWeaponEquiped?.Invoke(_item.GetComponent<SpriteRenderer>().sprite, true);
+                        break;
+                    case ItemStats.ItemType.Miscelaneous:
+                        break;
+                }
+
+                this.equiped[ItemManager.Instance.Items.FindIndex(z => z.Id == _item.Id)] = true;
             });
         }
 
@@ -38,19 +50,18 @@ namespace Inventory {
         }
         public List<(Stats.ItemStats Item, uint Amount)> Equiped {
             get {
-                return Items?.Select<(ItemStats Item, uint Amount), (ItemStats Item, uint Amount)>((x, pos) =>
-                    this.equiped[pos] ? x : (Item: null, Amount : 0)
+                return ItemManager.Instance.Items.Select<Stats.ItemStats, (ItemStats Item, uint Amount)>((x, pos) =>
+                    this.equiped[pos] ? (Item: x, Amount: this.amount[pos]) : (Item: null, Amount : 0)
                 )?.Where(x => x.Item != null && x.Amount > 0)?.ToList();
             }
         }
 
-        private List<bool> equiped;
-        private List<uint> amount;
+        public List<bool> equiped;
+        public List<uint> amount;
 
         public List<uint> BaseItemId;
         public List<uint> EquipeItemId;
         public void AddItem(ItemStats _item) {
-            Debug.Log(this.amount);
             if(Items.Exists(x => x.Item.Id == _item.Id))    IncrementAmount(_item);
             else {
                 this.amount[ItemManager.Instance.Items.FindIndex(x => x.Id == _item.Id)] = 1;
@@ -85,8 +96,6 @@ namespace Inventory {
 
                     IsWeaponEquiped?.Invoke(_item.GetComponent<SpriteRenderer>().sprite, true);
                     break;
-                case ItemStats.ItemType.Miscelaneous:
-                    break;
             }
 
             this.equiped[ItemManager.Instance.Items.FindIndex(x => x.Id == _item.Id)] = true;
@@ -101,9 +110,29 @@ namespace Inventory {
                     break;
             }
 
-            this.equiped[Items.FindIndex(x => x.Item.Id == _item.Id)] = false;
+            this.equiped[ItemManager.Instance.Items.FindIndex(x => x.Id == _item.Id)] = false;
             OnItemUnequiped?.Invoke(_item);
             OnInventoryChange?.Invoke();
+        }
+
+        public void UpdateInventory() {
+            InventoryManager.Instance.Fill();
+        }
+
+        public void OnSave(BinaryWriter _writer) {
+            _writer.Write(this.amount.Count);
+            this.amount.ForEach(x => _writer.Write(x));
+            this.equiped.ForEach(x => _writer.Write(x));
+        }
+
+        public void OnLoad(BinaryReader _reader) {
+            int amount = _reader.ReadInt32();
+            for(int i = 0; i < amount; i++) this.amount[i] = _reader.ReadUInt32();
+            for(int i = 0; i < amount; i++) {
+                this.equiped[i] = _reader.ReadBoolean();
+                if(this.equiped[i] && ItemManager.Instance.Items[i].Type == ItemStats.ItemType.Weapon)
+                    this.IsWeaponEquiped?.Invoke(ItemManager.Instance.Items[i].GetComponent<SpriteRenderer>().sprite, true);
+            }
         }
 
         /*

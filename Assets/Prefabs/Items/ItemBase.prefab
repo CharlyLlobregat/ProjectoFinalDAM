@@ -17,8 +17,8 @@ GameObject:
   - component: {fileID: 9158615175245205086}
   - component: {fileID: 2553925169721446334}
   - component: {fileID: 3241278907956933313}
-  - component: {fileID: 5732714447662352346}
   - component: {fileID: 1268901086963807480}
+  - component: {fileID: -2533327241300196064}
   m_Layer: 0
   m_Name: ItemBase
   m_TagString: Untagged
@@ -173,7 +173,7 @@ MonoBehaviour:
   OnPicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5732714447662352346}
+      - m_Target: {fileID: -2533327241300196064}
         m_MethodName: Picked
         m_Mode: 0
         m_Arguments:
@@ -240,6 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BaseItemId: 
+  EquipeItemId: 
   OnInventoryChange:
     m_PersistentCalls:
       m_Calls: []
@@ -316,18 +317,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &5732714447662352346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3595993777668990696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0ad13a51b535ec42a12a9877e94b368, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1268901086963807480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,3 +342,15 @@ MonoBehaviour:
   MaxStackSize: 0
   Type: 0
   Weapon: 0
+--- !u!114 &-2533327241300196064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3595993777668990696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a98641543f89244881f0052077d1fdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

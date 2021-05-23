@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 namespace Stats {
-    public class BaseStats : MonoBehaviour {
+    public class BaseStats : MonoBehaviour, ISave {
         #region LEVEL
         public uint Level {
             get => this.lvl;
@@ -33,6 +34,22 @@ namespace Stats {
             this.Defense = _base.Defense;
             this.Speed = _base.Speed;
             this.AttackSpeed = _base.AttackSpeed;
+        }
+
+        public void OnSave(BinaryWriter _writer) {
+            _writer.Write(Strength);
+            _writer.Write(Defense);
+            _writer.Write(Speed);
+            _writer.Write(AttackSpeed);
+            _writer.Write(lvl);
+        }
+
+        public void OnLoad(BinaryReader _reader) {
+            this.Strength = _reader.ReadUInt32();
+            this.Defense = _reader.ReadUInt32();
+            this.Speed = _reader.ReadUInt32();
+            this.AttackSpeed = _reader.ReadUInt32();
+            this.Level = _reader.ReadUInt32();
         }
     }
 

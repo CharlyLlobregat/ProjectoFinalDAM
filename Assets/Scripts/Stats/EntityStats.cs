@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 namespace Stats {
     public class EntityStats : BaseStats {
@@ -88,6 +89,23 @@ namespace Stats {
         }
 
         #endregion
+
+        public new void OnSave(BinaryWriter _writer) {
+            base.OnSave(_writer);
+
+            _writer.Write(this.exp);
+            _writer.Write(this.statPoints);
+            _writer.Write(this.hp);
+            _writer.Write(this.currentHp);
+        }
+        public new void OnLoad(BinaryReader _reader) {
+            base.OnLoad(_reader);
+
+            this.EXP = _reader.ReadUInt32();
+            this.StatPoints = _reader.ReadUInt32();
+            this.Health = _reader.ReadUInt32();
+            this.CurrentHealth = _reader.ReadUInt32();
+        }
 
         public OnStatPointsChange OnStatPointsChange;
         public OnHealthChange OnHealthChange;

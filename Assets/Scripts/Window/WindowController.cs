@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(DragDrop))]
-public class WindowController : MonoBehaviour {
+public class WindowController : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler {
     public Button CloseBtn;
     public Button HideBtn;
 
@@ -15,9 +16,9 @@ public class WindowController : MonoBehaviour {
     private bool hide = false;
     private Vector3 startPosition;
 
-    private void Start() {
-        CloseBtn.onClick.AddListener(this.OnClose);
-        HideBtn.onClick.AddListener(this.OnHide);
+    private void Awake() {
+        CloseBtn?.onClick.AddListener(this.OnClose);
+        HideBtn?.onClick.AddListener(this.OnHide);
 
         this.startPosition = this.transform.position;
     }
@@ -45,4 +46,12 @@ public class WindowController : MonoBehaviour {
 
         this.transform.Find("Content").gameObject.SetActive(!this.closed);
     }
+
+    public void OnPointerDown(PointerEventData eventData) => UIManager.Instance.OnUIClick = true;
+
+    public void OnPointerUp(PointerEventData eventData) => UIManager.Instance.OnUIClick = false;
+
+    public void OnPointerEnter(PointerEventData eventData) => UIManager.Instance.OnUIClick = true;
+
+    public void OnPointerExit(PointerEventData eventData) => UIManager.Instance.OnUIClick = false;
 }

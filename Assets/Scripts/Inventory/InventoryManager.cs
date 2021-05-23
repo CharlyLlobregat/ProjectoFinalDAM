@@ -23,36 +23,54 @@ namespace Inventory {
 
         private void Awake() {
             Instance = this;
-            this.inv = GameObject.Find("Player").GetComponent<Inventory>();
-            this.Fill();
         }
+        private void Start() {
+            if(Managers.EntityManager.Instance.GetCurrentEntity("Player", out Stats.EntityStats _entity)) {
+                this.inv = _entity.GetComponent<Inventory>();
+                this.Fill();
+            }
+        }
+
+        public void UpdateInventory() => this.Start();
+
 
         public void Equipe() {
+            Debug.Log(this.inv.gameObject);
             if(InvSelect.ActiveToggles().Any(x => x.isOn)) {
                 this.inv.Equipe(
-                    InvSelect
+                    ItemManager.Instance.GetItem(InvSelect
                     .ActiveToggles()?
                     .First(x => x.isOn)?
                     .gameObject?
-                    .GetComponentInChildren<Stats.ItemStats>()
+                    .GetComponent<Stats.ItemStats>())
                 );
 
                 Fill();
             }
         }
+        public void Equipe(ItemStats _item) {
+            this.inv.Equipe(ItemManager.Instance.GetItem(_item));
+            Fill();
+        }
+
         public void UnEquipe() {
+            Debug.Log(this.inv.gameObject);
             if (EquipedSelect.ActiveToggles().Any(x => x.isOn)) {
-                this.inv.Unequipe(
-                    EquipedSelect
-                    .ActiveToggles()?
-                    .First(x => x.isOn)?
-                    .gameObject?
-                    .GetComponentInChildren<Stats.ItemStats>()
-                );
+                if(EquipedSelect
+                    .ActiveToggles()
+                    .First(x => x.isOn)
+                    .gameObject
+                    .TryGetComponent<Stats.ItemStats>(out Stats.ItemStats _item))
+                        this.inv.Unequipe(ItemManager.Instance.GetItem(_item));
 
                 Fill();
             }
         }
+        public void UnEquipe(ItemStats _item) {
+            this.inv.Unequipe(ItemManager.Instance.GetItem(_item));
+            Fill();
+        }
+
         public void Use() {
             if(InvSelect.ActiveToggles().Any(x => x.isOn)) {
                 Controller.PlayerController.Instance
@@ -96,6 +114,10 @@ namespace Inventory {
         }
 
         public void Fill() {
+            if (Managers.EntityManager.Instance.GetCurrentEntity("Player", out Stats.EntityStats _entity)) {
+                this.inv = _entity.GetComponent<Inventory>();
+            }
+
             InvSelect.GetComponentsInChildren<Toggle>().ToList().ForEach(x => Destroy(x.gameObject));
             EquipedSelect.GetComponentsInChildren<Toggle>().ToList().ForEach(x => Destroy(x.gameObject));
 
@@ -109,8 +131,7 @@ namespace Inventory {
                     tempItem.GetComponentInChildren<Text>().text = "" + (x.Amount - 1);
                     tempItem.GetComponent<Toggle>().group = InvSelect;
                     tempItem.GetComponent<Toggle>().isOn = false;
-                    tempItem.GetComponentInChildren<Stats.ItemStats>().Reset(x.Item.GetComponent<Stats.ItemStats>());
-                    tempItem.GetComponentInChildren<SpriteRenderer>().sprite = x.Item.GetComponent<SpriteRenderer>().sprite;
+                    tempItem.GetComponent<Stats.ItemStats>().Reset(x.Item.GetComponent<Stats.ItemStats>());
                 }else if (!this.inv.Equiped.Contains(x)) {
                     GameObject tempItem = Instantiate(
                         ItemInv,
@@ -120,12 +141,10 @@ namespace Inventory {
                     tempItem.GetComponentInChildren<Text>().text = "" + x.Amount;
                     tempItem.GetComponent<Toggle>().group = InvSelect;
                     tempItem.GetComponent<Toggle>().isOn = false;
-                    tempItem.GetComponentInChildren<Stats.ItemStats>().Reset(x.Item.GetComponent<Stats.ItemStats>());
-                    tempItem.GetComponentInChildren<SpriteRenderer>().sprite = x.Item.GetComponent<SpriteRenderer>().sprite;
+                    tempItem.GetComponent<Stats.ItemStats>().Reset(x.Item.GetComponent<Stats.ItemStats>());
                 }
             });
 
-            Debug.Log("Filling");
             this.inv.Equiped?.ForEach(x => {
                 GameObject tempItem = Instantiate(
                     ItemInv,
@@ -135,8 +154,7 @@ namespace Inventory {
                 tempItem.GetComponentInChildren<Text>().text = "" + (x.Amount > 1 ? 1 : x.Amount);
                 tempItem.GetComponent<Toggle>().group = EquipedSelect;
                 tempItem.GetComponent<Toggle>().isOn = false;
-                tempItem.GetComponentInChildren<Stats.ItemStats>().Reset(x.Item.GetComponent<Stats.ItemStats>());
-                tempItem.GetComponentInChildren<SpriteRenderer>().sprite = x.Item.GetComponent<SpriteRenderer>().sprite;
+                tempItem.GetComponent<Stats.ItemStats>().Reset(x.Item.GetComponent<Stats.ItemStats>());
             });
         }
 

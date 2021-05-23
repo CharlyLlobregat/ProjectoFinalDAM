@@ -81,6 +81,7 @@ namespace Interaction {
         [SerializeField] public TalkedEvent OnTalked;
         [SerializeField] public UsedEvent OnUsed;
         [SerializeField] public PlacedEvent OnPlaced;
+        [SerializeField] public KilledEvent OnKilledBy;
 
         #region EVENT_DEFINITIONS
         // OnChange Event Classes
@@ -109,6 +110,7 @@ namespace Interaction {
         [System.Serializable] public class PickedEvent : UnityEvent<EntityStats> { }
         [System.Serializable] public class TalkEvent : UnityEvent { }
         [System.Serializable] public class TalkedEvent : UnityEvent<EntityStats> { }
+        [System.Serializable] public class KilledEvent : UnityEvent<EntityStats> { }
         #endregion
 
 

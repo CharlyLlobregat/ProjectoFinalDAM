@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 namespace Dialogue {
     public class DialogueManager : MonoBehaviour {
-        public static DialogueManager Instance {get; private set;}
+        public static DialogueManager Instance {get; private set; }
+        private void Awake() => Instance = this;
         private void Start() {
-            Instance = this;
             NextDialogue.onClick.AddListener(() => {
                 if(this.currentDialogue.Sentences.Count > this.currentDialogue.currentSentence + 1){
                     this.currentDialogue.currentSentence++;
@@ -42,6 +42,8 @@ namespace Dialogue {
                     Sentences.text = builder.ToString();
                 }else
                     this.deltaLetterCounter -= Time.deltaTime;
+            else
+                this.GetComponent<WindowController>().OnHide();
         }
 
         public DialogueController CurrentDialogue {

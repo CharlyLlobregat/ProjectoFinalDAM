@@ -5,6 +5,7 @@ using Stats;
 using Interaction;
 using Inventory;
 using System.Linq;
+using System.IO;
 
 namespace Controller {
     /**
@@ -20,7 +21,7 @@ namespace Controller {
     [RequireComponent(typeof(Interaction.InteractionController))]
     [RequireComponent(typeof(Interaction.InteractionManager))]
     [RequireComponent(typeof(Animator))]
-    public class EntityBaseController : MonoBehaviour {
+    public class EntityBaseController : MonoBehaviour, ISave {
         protected Inventory.Inventory inv;
         protected Rigidbody2D rigidBody;
         protected EntityStats stats;
@@ -70,6 +71,9 @@ namespace Controller {
                 case "ATTACK":
                     this.animator.SetBool("Attacking", this.interact.IsAttacking);
                     break;
+                case "NOTATTACK":
+                    this.animator.SetBool("Attacking", false);
+                    break;
             }
         }
         public void Attacked(EntityStats _by, uint _damage) {
@@ -79,7 +83,8 @@ namespace Controller {
             uint totalDamage = (uint)Mathf.Max(_damage - itemDefense - this.stats.Defense, 0);
 
             this.stats.ReduceHealth(totalDamage);
-            Debug.Log("Attacked");
+            if(this.stats.CurrentHealth == 0)
+                this.interact.OnKilledBy?.Invoke(_by);
 
             if(SettingsManager.Instance.ShowDamageNumbers)
                 if((_by.IsPlayer && SettingsManager.Instance.ShowEnemyDamageNumbers) || SettingsManager.Instance.ShowPlayerDamageNumbers)
@@ -96,11 +101,19 @@ namespace Controller {
             }
         }
         public void Talked(EntityStats _by) {
-            if(_by.IsPlayer && TryGetComponent<Dialogue.DialogueController>(out Dialogue.DialogueController dialogue)) UIManager.Instance.StartDialogue(dialogue);
+            if(_by.IsPlayer && TryGetComponent<Dialogue.DialogueController>(out Dialogue.DialogueController dialogue)) {
+                this.interact.IsTalking = true;
+                UIManager.Instance.StartDialogue(dialogue);
+            }
         }
         // public void Used() { }
         public void Placed(Vector3 _position) {
             GameManager.Instance.InstantiateItem(this.GetComponent<ItemStats>(), _position);
+        }
+        public void Killed(EntityStats _by) {
+            _by.AddExp(this.stats.EXP);
+            DropInventory();
+            Kill();
         }
         #endregion
 
@@ -131,7 +144,7 @@ namespace Controller {
             if(!this.interact.IsAttacking) {
                 ItemStats.WeaponType wtype = ItemStats.WeaponType.None;
                 try {
-                    wtype = this.inv.Equiped.First(x => x.Item.Type == ItemStats.ItemType.Weapon).Item.Weapon;
+                    wtype = this.inv.Equiped.First(x => x.Item.Type == ItemStats.ItemType.Weapon || x.Item.Weapon == ItemStats.WeaponType.Arrow).Item.Weapon;
                 }catch{ }
 
                 if (wtype == ItemStats.WeaponType.Sword) {
@@ -141,24 +154,32 @@ namespace Controller {
 
                     this.interact.OnAttack?.Invoke(this.stats.Strength + itemDamage);
                 } else if(wtype == ItemStats.WeaponType.Arc){
-                    ItemStats arrow = this.inv.Equiped.First(x => x.Item.Weapon == ItemStats.WeaponType.Arrow).Item;
-                    ItemStats arc = this.inv.Equiped.First(x => x.Item.Weapon == ItemStats.WeaponType.Arc).Item;
+                    if(this.inv.Equiped.Any(x => x.Item.Weapon == ItemStats.WeaponType.Arrow)) {
+                        ItemStats arrow = this.inv.Equiped.First(x => x.Item.Weapon == ItemStats.WeaponType.Arrow).Item;
+                        ItemStats arc = this.inv.Equiped.First(x => x.Item.Weapon == ItemStats.WeaponType.Arc).Item;
 
-                    GameManager.Instance.InstantiateArrow(arrow, arrow.Strength + arc.Strength);
-                    this.inv.DecrementAmount(arrow);
+                        GameManager.Instance.InstantiateArrow(arrow, this.transform.position, this.LastMovement, arc.Strength);
+                        this.inv.DecrementAmount(arrow);
+                    }
+                }else if(wtype == ItemStats.WeaponType.Arrow) {
+                    uint itemDamage = 0;
+                    foreach ((Stats.ItemStats i, _) in this.inv.Equiped)
+                        itemDamage += i.Strength;
+
+                    this.interact.OnAttack?.Invoke(this.stats.Strength + itemDamage);
                 }
 
                 if(wtype != ItemStats.WeaponType.None) {
                     this.interact.IsAttacking = true;
-                    StartCoroutine(AttackTimeOut());
                     ChangeAnimation("ATTACK");
+                    StartCoroutine(AttackTimeOut());
                 }
             }
         }
         private IEnumerator AttackTimeOut() {
-            new WaitForSeconds(this.stats.AttackSpeed);
+            yield return new WaitForSeconds(this.stats.AttackSpeed * 2 / Mathf.Pow(this.stats.AttackSpeed, 2f));
             this.interact.IsAttacking = false;
-            yield return null;
+            ChangeAnimation("NOTATTACK");
         }
 
         protected void Activate(){ }
@@ -182,6 +203,7 @@ namespace Controller {
             if (weapon.TryGetComponent<SpriteRenderer>(out SpriteRenderer renderer)) renderer.sprite = _sprite;
         }
         public void Kill() {
+            Managers.EntityManager.Instance.CurrentEntities.Remove(this.GetComponent<EntityStats>());
             Destroy(this.gameObject);
         }
 
@@ -201,5 +223,15 @@ namespace Controller {
 
         protected virtual void Behaviour() {}
         protected virtual void LateBehaviour() {}
+
+        public void OnSave(BinaryWriter _writer) {
+            _writer.Write(LastMovement.x);
+            _writer.Write(LastMovement.y);
+        }
+
+        public void OnLoad(BinaryReader _reader) {
+            LastMovement = new Vector2(_reader.ReadSingle(), _reader.ReadSingle());
+        }
+
     }
 }

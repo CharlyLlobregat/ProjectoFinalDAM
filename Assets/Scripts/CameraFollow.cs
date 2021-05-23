@@ -8,18 +8,20 @@ public class CameraFollow : MonoBehaviour {
 
     private Vector3 targetPosition;
     private void Update() {
-        this.targetPosition = new Vector3(
-            Target.transform.position.x,
-            Target.transform.position.y,
-            this.transform.position.z
-        );
+        if(Target)
+            this.targetPosition = new Vector3(
+                Target.transform.position.x,
+                Target.transform.position.y,
+                this.transform.position.z
+            );
     }
 
     private void LateUpdate() {
-        this.transform.position = Vector3.Lerp(
-            this.transform.position,
-            this.targetPosition,
-            Time.deltaTime * CameraSpeed
-        );
+        if(Target)
+            this.transform.position = Vector3.Lerp(
+                this.transform.position,
+                this.targetPosition,
+                Time.deltaTime * CameraSpeed
+            );
     }
 }

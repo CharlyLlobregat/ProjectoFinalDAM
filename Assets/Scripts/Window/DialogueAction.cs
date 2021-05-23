@@ -23,7 +23,9 @@ namespace Dialogue {
         }
 
         public void GivePlayerItem(Stats.ItemStats _item) {
-            GameObject.Find("Player").GetComponent<Inventory.Inventory>().AddItem(_item);
+            if(Managers.EntityManager.Instance.GetCurrentEntity("Player", out Stats.EntityStats _entity)) {
+                _entity.GetComponent<Inventory.Inventory>().AddItem(_item);
+            }
         }
     }
 }

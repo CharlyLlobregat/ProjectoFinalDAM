@@ -15,12 +15,11 @@ namespace Interaction {
         public List<InteractionController> Interactables;
 
         public void OnAttack(uint _damage) {
-            Debug.Log("OnAttack");
             GetNearest(this.Interactables.Where(x => x.CanBeAttacked))?.OnAttacked?.Invoke(GetComponent<EntityStats>(), _damage);
         }
 
         public void OnPick() {
-            GetNearest(this.Interactables.Where(x => x.CanBePicked))?.OnPicked?.Invoke(GetComponent<EntityStats>());
+            GetNearest(this.Interactables.Where(x => x != null && x.CanBePicked))?.OnPicked?.Invoke(GetComponent<EntityStats>());
         }
         public void OnTalk() {
             GetNearest(this.Interactables.Where(x => x.CanBeTalked))?.OnTalked?.Invoke(GetComponent<EntityStats>());
@@ -42,10 +41,16 @@ namespace Interaction {
                 this.Interactables.Remove(temp);
         }
 
-        private InteractionController GetNearest(IEnumerable<InteractionController> _from) {
+        public InteractionController GetNearest(IEnumerable<InteractionController> _from) {
             try{
                 return _from?.Where(x => {
-                    Vector2 direction = GetComponent<Controller.PlayerController>().LastMovement;
+                    Vector2 direction = default;
+                    if(TryGetComponent<Controller.PlayerController>(out Controller.PlayerController pCon))
+                        direction = pCon.LastMovement;
+                    else if(TryGetComponent<Controller.EnemyController>(out Controller.EnemyController eCon))
+                        direction = eCon.LastMovement;
+                    else if(TryGetComponent<Controller.ArrowController>(out Controller.ArrowController aCon))
+                        direction = aCon.LastMovement;
                     Vector2 objectPosition = (this.transform.position - x.InteractionPoint.position).normalized;
 
                     if (Mathf.Abs(objectPosition.x) > Mathf.Abs(objectPosition.y)) {

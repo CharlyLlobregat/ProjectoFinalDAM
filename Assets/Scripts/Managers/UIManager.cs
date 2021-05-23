@@ -15,15 +15,33 @@ public class UIManager : MonoBehaviour {
     public Slider PlayerExpBar;
     public Text PlayerExpText;
 
-    public Stats.EntityStats PlayerStats;
-
     public Canvas DamageCanvas;
 
     private Color32 baseColor;
 
-    private void Start() {
+    public bool OnUIClick;
+
+    public WindowController StatWindow;
+    public WindowController InventoryWindow;
+    public WindowController ItemWindow;
+    public WindowController DialogueWindow;
+    public WindowController SettingsWindow;
+    public WindowController PauseMenu;
+    public WindowController MainMenu;
+
+    private void Awake() {
         Instance = this;
+    }
+    private void Start() {
         this.baseColor = new Color(1, 1, 1, 0.433f);
+        for (int i = 0; i < this.transform.childCount; i++)
+            if (!(
+                this.transform.GetChild(i).name == "MainMenu" ||
+                this.transform.GetChild(i).name == "PauseMenu"))
+                if (this.transform.GetChild(i).TryGetComponent<WindowController>(out WindowController win)) win.OnHide();
+
+        if(!System.IO.File.Exists(Application.persistentDataPath + "/save.dat"))
+            this.transform.Find("MainMenu").Find("StartBtn").gameObject.SetActive(false);
     }
 
     public void UpdateExp(uint _currentEXP, uint _maxEXP) {
@@ -33,9 +51,9 @@ public class UIManager : MonoBehaviour {
             .Append(" / ")
             .Append(_maxEXP);
 
-        PlayerExpBar.maxValue = _maxEXP;
-        PlayerExpBar.value = _currentEXP;
-        PlayerExpText.text = builder.ToString();
+        Instance.PlayerExpBar.maxValue = _maxEXP;
+        Instance.PlayerExpBar.value = _currentEXP;
+        Instance.PlayerExpText.text = builder.ToString();
     }
 
     public void UpdateLevel(uint _level) {
@@ -43,12 +61,12 @@ public class UIManager : MonoBehaviour {
             .Append("Nivel: ")
             .Append(_level);
 
-        PlayerLevelText.text = builder.ToString();
+        Instance.PlayerLevelText.text = builder.ToString();
     }
 
     public void UpdateHealth(uint _currentHealth, uint _maxHealth) {
-        PlayerHealthBar.maxValue = _maxHealth;
-        PlayerHealthBar.value = _currentHealth;
+        Instance.PlayerHealthBar.maxValue = _maxHealth;
+        Instance.PlayerHealthBar.value = _currentHealth;
 
         System.Text.StringBuilder builder = new System.Text.StringBuilder()
             .Append("HP: ")
@@ -56,12 +74,12 @@ public class UIManager : MonoBehaviour {
             .Append(" / ")
             .Append(_maxHealth);
 
-        PlayerrHealthText.text = builder.ToString();
+        Instance.PlayerrHealthText.text = builder.ToString();
     }
 
     public void ItemUI(Stats.ItemStats _item) {
-        GameObject itemUI = this.transform.Find("ItemWindow").Find("Content").Find("Viewport").Find("Content").gameObject;
-        itemUI.GetComponentInChildren<Image>().sprite = _item.gameObject.GetComponent<SpriteRenderer>().sprite;
+        GameObject itemUI = Instance.transform.Find("ItemWindow").Find("Content").Find("Viewport").Find("Content").gameObject;
+        itemUI.GetComponentInChildren<Image>().sprite = Inventory.ItemManager.Instance.GetItem(_item).GetComponent<SpriteRenderer>().sprite;
         GameObject stats = itemUI.transform.Find("ItemStats").gameObject;
         StringBuilder builder = new StringBuilder();
         stats.transform.Find("Name").GetComponent<Text>().text = builder.Append("Name: ").Append(_item.Name).ToString();        builder.Clear();
@@ -70,13 +88,19 @@ public class UIManager : MonoBehaviour {
         stats.transform.Find("Strength").GetComponent<Text>().text = builder.Append("Strength: ").Append(_item.Strength).ToString();      builder.Clear();
         stats.transform.Find("Speed").GetComponent<Text>().text = builder.Append("Speed: ").Append(_item.Speed).ToString();       builder.Clear();
 
-        this.transform.Find("ItemWindow").GetComponent<WindowController>().Show();
+        Instance.transform.Find("ItemWindow").GetComponent<WindowController>().Show();
     }
 
     public void ResetWindows() {
         for(int i = 0; i < this.transform.childCount; i++)
-            if(this.transform.GetChild(i).name != "DialogueWindow")
-                this.transform.GetChild(i).GetComponent<WindowController>().Show();
+            if( !(this.transform.GetChild(i).name == "DialogueWindow" ||
+                this.transform.GetChild(i).name == "MainMenu" ||
+                this.transform.GetChild(i).name == "PauseMenu" ||
+                this.transform.GetChild(i).name == "SettingsWindow" ||
+                this.transform.GetChild(i).name == "ItemWindow"))
+                    if(this.transform.GetChild(i).TryGetComponent<WindowController>(out WindowController win)) win.Show();
+        Inventory.InventoryManager.Instance.UpdateInventory();
+
     }
 
     public void UpdateRed(string _red) {
@@ -98,19 +122,40 @@ public class UIManager : MonoBehaviour {
         this.baseColor = _rgb;
 
         for (int i = 0; i < this.transform.childCount; i++)
-            this.transform.GetChild(i).GetComponent<Image>().color = _rgb;
+            if(this.transform.GetChild(i).name == "MainMenu" ||
+                this.transform.GetChild(i).name == "PauseMenu")
+                this.transform.GetChild(i).GetComponent<Image>().color = new Color(_rgb.r, _rgb.g, _rgb.b, 1f);
+            else
+                this.transform.GetChild(i).GetComponent<Image>().color = _rgb;
+        this.transform.Find("MenuBtn").GetComponent<Image>().color = Color.white;
     }
 
     public void CreateDamageNumber(Vector3 _position, uint _damage) {
-        Instantiate(
+        GameObject gameObject = Instantiate(
             DamageCanvas.gameObject,
             _position,
             Quaternion.Euler(Vector3.zero)
-        ).GetComponent<DamageNumber>().DamagePoints = _damage;
+        );
+        gameObject.GetComponent<DamageNumber>().DamagePoints = _damage;
+        Destroy(gameObject, 0.5f);
     }
 
     public void StartDialogue(Dialogue.DialogueController _dialogue) {
         Dialogue.DialogueManager.Instance.GetComponent<WindowController>().Show();
         Dialogue.DialogueManager.Instance.CurrentDialogue = _dialogue;
+    }
+
+    public void ShowPause() {
+        this.transform.Find("PauseMenu").GetComponent<WindowController>().Show();
+    }
+
+    public void ExitGame() {
+        Application.Quit();
+    }
+
+    public void GoToMenu() {
+        MainMenu.gameObject.SetActive(true);
+
+        MainMenu.transform.Find("StartBtn").gameObject.SetActive(System.IO.File.Exists(Application.persistentDataPath + "/save.dat"));
     }
 }

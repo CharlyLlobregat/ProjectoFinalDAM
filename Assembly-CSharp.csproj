@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\Interactions\TeleportPoint.cs" />
     <Compile Include="Assets\Scripts\Interactions\TeleportPoint2Way.cs" />
     <Compile Include="Assets\Scripts\Inventory\Inventory.cs" />
+    <Compile Include="Assets\Scripts\Inventory\InventoryController.cs" />
     <Compile Include="Assets\Scripts\Inventory\InventoryManager.cs" />
     <Compile Include="Assets\Scripts\Inventory\ItemManager.cs" />
     <Compile Include="Assets\Scripts\ItemDrop.cs" />
@@ -88,12 +89,15 @@
     <Compile Include="Assets\Scripts\Stats\ItemStats.cs" />
     <Compile Include="Assets\Scripts\TempNew\ArrowController.cs" />
     <Compile Include="Assets\Scripts\TempNew\DialogueController.cs" />
+    <Compile Include="Assets\Scripts\TempNew\EnemyController.cs" />
     <Compile Include="Assets\Scripts\TempNew\EntityBaseController.cs" />
+    <Compile Include="Assets\Scripts\TempNew\ItemController.cs" />
     <Compile Include="Assets\Scripts\TempNew\PlayerController.cs" />
     <Compile Include="Assets\Scripts\WeaponDamage.cs" />
     <Compile Include="Assets\Scripts\Window\DialogueAction.cs" />
     <Compile Include="Assets\Scripts\Window\DialogueManager.cs" />
     <Compile Include="Assets\Scripts\Window\DragDrop.cs" />
+    <Compile Include="Assets\Scripts\Window\ItemController.cs" />
     <Compile Include="Assets\Scripts\Window\ProcessKeyPress.cs" />
     <Compile Include="Assets\Scripts\Window\ScaleWindow.cs" />
     <Compile Include="Assets\Scripts\Window\WindowController.cs" />

@@ -120,7 +120,7 @@ MonoBehaviour:
   PlayerLevelText: {fileID: 2749004320731593536}
   PlayerExpBar: {fileID: 2578970075761907337}
   PlayerExpText: {fileID: 5357722854872199314}
-  PlayerStats: {fileID: 0}
+  DamageCanvas: {fileID: 0}
 --- !u!1001 &2488705004931009268
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1137,12 +1137,12 @@ PrefabInstance:
     - target: {fileID: 39056621616107787, guid: a7488f70f29d37840b3b347b3e93a012,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 18
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 39056621616107787, guid: a7488f70f29d37840b3b347b3e93a012,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 431
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 39056621616107787, guid: a7488f70f29d37840b3b347b3e93a012,
         type: 3}
@@ -1209,6 +1209,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 920334651749863860, guid: a7488f70f29d37840b3b347b3e93a012,
+        type: 3}
+      propertyPath: m_Text
+      value: 'Name: Ice Sword'
+      objectReference: {fileID: 0}
     - target: {fileID: 960610758872136250, guid: a7488f70f29d37840b3b347b3e93a012,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1268,6 +1273,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4719328724322886236, guid: a7488f70f29d37840b3b347b3e93a012,
+        type: 3}
+      propertyPath: m_Text
+      value: 'Strength: 200'
       objectReference: {fileID: 0}
     - target: {fileID: 5282316282948886263, guid: a7488f70f29d37840b3b347b3e93a012,
         type: 3}
@@ -1353,6 +1363,11 @@ PrefabInstance:
         type: 3}
       propertyPath: Min.y
       value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403753418221878792, guid: a7488f70f29d37840b3b347b3e93a012,
+        type: 3}
+      propertyPath: m_Text
+      value: 'Speed: 0'
       objectReference: {fileID: 0}
     - target: {fileID: 8413318878172973302, guid: a7488f70f29d37840b3b347b3e93a012,
         type: 3}

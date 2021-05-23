@@ -25,7 +25,7 @@ PrefabInstance:
     - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
       propertyPath: Strength
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2310146914259558985, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
@@ -48,6 +48,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -5094286353425474703, guid: 723e60c9186084d49a5a91caaf6e7941,
         type: 3}
+    - target: {fileID: 2553925169721446334, guid: 9eaca84921931bd45bfd14c73671990b,
+        type: 3}
+      propertyPath: Name
+      value: Sword_1
+      objectReference: {fileID: 0}
     - target: {fileID: 3506967108530445632, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
       propertyPath: m_RootOrder

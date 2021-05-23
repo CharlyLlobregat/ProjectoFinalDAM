@@ -1,6 +1,6 @@
 .vs/*
 Temp/*
-Build/*
+PCBuild/*
 BuildAndroid/*
 Logs/*
 Library/*
