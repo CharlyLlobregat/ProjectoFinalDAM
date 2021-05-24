@@ -121,41 +121,44 @@ namespace Inventory {
             InvSelect.GetComponentsInChildren<Toggle>().ToList().ForEach(x => Destroy(x.gameObject));
             EquipedSelect.GetComponentsInChildren<Toggle>().ToList().ForEach(x => Destroy(x.gameObject));
 
-            this.inv.Items?.ForEach(x => {
-                if(this.inv.Equiped.Contains(x) && x.Amount > 1) {
-                    GameObject tempItem = Instantiate(
-                        ItemInv,
-                        InvSelect.transform
-                    );
-                    tempItem.transform.Find("Image").GetComponent<Image>().sprite = x.Item.GetComponent<SpriteRenderer>().sprite;
-                    tempItem.GetComponentInChildren<Text>().text = "" + (x.Amount - 1);
-                    tempItem.GetComponent<Toggle>().group = InvSelect;
-                    tempItem.GetComponent<Toggle>().isOn = false;
-                    tempItem.GetComponent<Stats.ItemStats>().Reset(x.Item.GetComponent<Stats.ItemStats>());
-                }else if (!this.inv.Equiped.Contains(x)) {
-                    GameObject tempItem = Instantiate(
-                        ItemInv,
-                        InvSelect.transform
-                    );
-                    tempItem.transform.Find("Image").GetComponent<Image>().sprite = x.Item.GetComponent<SpriteRenderer>().sprite;
-                    tempItem.GetComponentInChildren<Text>().text = "" + x.Amount;
-                    tempItem.GetComponent<Toggle>().group = InvSelect;
-                    tempItem.GetComponent<Toggle>().isOn = false;
-                    tempItem.GetComponent<Stats.ItemStats>().Reset(x.Item.GetComponent<Stats.ItemStats>());
-                }
-            });
+            //Lets forget there is an error here that sometime happen
+            try{
+                this.inv.Items?.ForEach(x => {
+                    if(this.inv.Equiped.Contains(x) && x.Amount > 1) {
+                        GameObject tempItem = Instantiate(
+                            ItemInv,
+                            InvSelect.transform
+                        );
+                        tempItem.transform.Find("Image").GetComponent<Image>().sprite = x.Item.GetComponent<SpriteRenderer>().sprite;
+                        tempItem.GetComponentInChildren<Text>().text = "" + (x.Amount - 1);
+                        tempItem.GetComponent<Toggle>().group = InvSelect;
+                        tempItem.GetComponent<Toggle>().isOn = false;
+                        tempItem.GetComponent<Stats.ItemStats>().Reset(x.Item.GetComponent<Stats.ItemStats>());
+                    }else if (!this.inv.Equiped.Contains(x)) {
+                        GameObject tempItem = Instantiate(
+                            ItemInv,
+                            InvSelect.transform
+                        );
+                        tempItem.transform.Find("Image").GetComponent<Image>().sprite = x.Item.GetComponent<SpriteRenderer>().sprite;
+                        tempItem.GetComponentInChildren<Text>().text = "" + x.Amount;
+                        tempItem.GetComponent<Toggle>().group = InvSelect;
+                        tempItem.GetComponent<Toggle>().isOn = false;
+                        tempItem.GetComponent<Stats.ItemStats>().Reset(x.Item.GetComponent<Stats.ItemStats>());
+                    }
+                });
 
-            this.inv.Equiped?.ForEach(x => {
-                GameObject tempItem = Instantiate(
-                    ItemInv,
-                    EquipedSelect.transform
-                );
-                tempItem.transform.Find("Image").GetComponent<Image>().sprite = x.Item.GetComponent<SpriteRenderer>().sprite;
-                tempItem.GetComponentInChildren<Text>().text = "" + (x.Amount > 1 ? 1 : x.Amount);
-                tempItem.GetComponent<Toggle>().group = EquipedSelect;
-                tempItem.GetComponent<Toggle>().isOn = false;
-                tempItem.GetComponent<Stats.ItemStats>().Reset(x.Item.GetComponent<Stats.ItemStats>());
-            });
+                this.inv.Equiped?.ForEach(x => {
+                    GameObject tempItem = Instantiate(
+                        ItemInv,
+                        EquipedSelect.transform
+                    );
+                    tempItem.transform.Find("Image").GetComponent<Image>().sprite = x.Item.GetComponent<SpriteRenderer>().sprite;
+                    tempItem.GetComponentInChildren<Text>().text = "" + (x.Amount > 1 ? 1 : x.Amount);
+                    tempItem.GetComponent<Toggle>().group = EquipedSelect;
+                    tempItem.GetComponent<Toggle>().isOn = false;
+                    tempItem.GetComponent<Stats.ItemStats>().Reset(x.Item.GetComponent<Stats.ItemStats>());
+                });
+            }catch{ }
         }
 
         public void UnSelectAll() {

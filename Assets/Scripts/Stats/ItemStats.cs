@@ -33,7 +33,8 @@ namespace Stats {
             None,
             Sword,
             Arc,
-            Arrow
+            Arrow,
+            Shield
         }
     }
 }

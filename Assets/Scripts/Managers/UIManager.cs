@@ -143,8 +143,8 @@ public class UIManager : MonoBehaviour {
     }
 
     public void StartDialogue(Dialogue.DialogueController _dialogue) {
-        Dialogue.DialogueManager.Instance.GetComponent<WindowController>().Show();
-        Dialogue.DialogueManager.Instance.CurrentDialogue = _dialogue;
+        DialogueWindow.GetComponent<WindowController>().Show();
+        DialogueWindow.GetComponent<Dialogue.DialogueManager>().CurrentDialogue = _dialogue;
     }
 
     public void ShowPause() {
@@ -177,6 +177,8 @@ public class UIManager : MonoBehaviour {
         DialogueWindow.gameObject.SetActive(false);
         SettingsWindow.gameObject.SetActive(false);
 
+        OnUIClick = false;
+
         PauseMenu.gameObject.SetActive(false);
         GameOver.gameObject.SetActive(false);
         MainMenu.gameObject.SetActive(false);
@@ -189,6 +191,8 @@ public class UIManager : MonoBehaviour {
         SettingsWindow.gameObject.SetActive(false);
         PauseMenu.gameObject.SetActive(false);
         GameOver.gameObject.SetActive(false);
+
+        GameManager.Instance.Unspawn();
 
         GameOver.transform.Find("GameEnd").GetComponent<Text>().text = (_isGood ? "You Won!!" : "You Lost!!");
         GameOver.transform.gameObject.SetActive(true);

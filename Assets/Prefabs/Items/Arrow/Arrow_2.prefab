@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &4463617117942022085
+--- !u!1001 &1094358598835349921
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,48 +10,38 @@ PrefabInstance:
     - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
       propertyPath: Id
-      value: 1
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
       propertyPath: Name
-      value: Fire Sword
+      value: Ice Arrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
+        type: 3}
+      propertyPath: Type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
       propertyPath: Weapon
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
       propertyPath: Strength
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2310146914259558985, guid: 9eaca84921931bd45bfd14c73671990b,
-        type: 3}
-      propertyPath: Id
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2310146914259558985, guid: 9eaca84921931bd45bfd14c73671990b,
-        type: 3}
-      propertyPath: Name
-      value: Fire Sword
-      objectReference: {fileID: 0}
-    - target: {fileID: 2310146914259558985, guid: 9eaca84921931bd45bfd14c73671990b,
-        type: 3}
-      propertyPath: Weapon
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2378485329672732380, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -5094286353425474703, guid: 723e60c9186084d49a5a91caaf6e7941,
+      objectReference: {fileID: 21300000, guid: 488dcddc11f153042b5e453abfbdd758,
         type: 3}
     - target: {fileID: 2553925169721446334, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
       propertyPath: Name
-      value: Sword_1
+      value: Arrow_2
       objectReference: {fileID: 0}
     - target: {fileID: 3506967108530445632, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
@@ -111,16 +101,16 @@ PrefabInstance:
     - target: {fileID: 3595993777668990696, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
       propertyPath: m_Name
-      value: Sword_1
+      value: Arrow_2
       objectReference: {fileID: 0}
-    - target: {fileID: 8960147378338403339, guid: 9eaca84921931bd45bfd14c73671990b,
+    - target: {fileID: 9158615175245205086, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
-      propertyPath: m_AngularDrag
+      propertyPath: amount.Array.size
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8960147378338403339, guid: 9eaca84921931bd45bfd14c73671990b,
+    - target: {fileID: 9158615175245205086, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
-      propertyPath: m_GravityScale
+      propertyPath: amount.Array.data[0]
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9158615175245205086, guid: 9eaca84921931bd45bfd14c73671990b,
@@ -131,17 +121,7 @@ PrefabInstance:
     - target: {fileID: 9158615175245205086, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
       propertyPath: BaseItemId.Array.data[0]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9216775187030046295, guid: 9eaca84921931bd45bfd14c73671990b,
-        type: 3}
-      propertyPath: CanPick
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9216775187030046295, guid: 9eaca84921931bd45bfd14c73671990b,
-        type: 3}
-      propertyPath: CanBePicked
-      value: 1
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9eaca84921931bd45bfd14c73671990b, type: 3}

@@ -93,6 +93,7 @@
     <Compile Include="Assets\Scripts\TempNew\EnemyController.cs" />
     <Compile Include="Assets\Scripts\TempNew\EntityBaseController.cs" />
     <Compile Include="Assets\Scripts\TempNew\ItemController.cs" />
+    <Compile Include="Assets\Scripts\TempNew\NPCController.cs" />
     <Compile Include="Assets\Scripts\TempNew\PlayerController.cs" />
     <Compile Include="Assets\Scripts\WeaponDamage.cs" />
     <Compile Include="Assets\Scripts\Window\DialogueAction.cs" />

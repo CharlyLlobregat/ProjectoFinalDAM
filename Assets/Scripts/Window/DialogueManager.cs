@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Dialogue {
@@ -25,7 +26,10 @@ namespace Dialogue {
                 }
             });
 
-            if(DeltaLetter == 0)    DeltaLetter = 0.5f;
+            GetComponent<WindowController>().OnCloseWindow?.AddListener(() => Controller.PlayerController.Instance.GetComponent<Interaction.InteractionController>().IsTalking = false);
+
+
+            if (DeltaLetter == 0)    DeltaLetter = 0.5f;
         }
 
         private void Update() {
@@ -49,8 +53,9 @@ namespace Dialogue {
         public DialogueController CurrentDialogue {
             get => currentDialogue;
             set {
-                if(this.currentDialogue != null) this.currentDialogue.currentSentence = 0;
                 this.currentDialogue = value;
+                if (this.currentDialogue != null) this.currentDialogue.currentSentence = 0;
+                else return;
                 this.currentLetter = 0;
                 this.currentDialogue.currentSentence = 0;
                 this.deltaLetterCounter = 0;
@@ -77,5 +82,9 @@ namespace Dialogue {
         public float DeltaLetter;
         private float deltaLetterCounter;
         private uint currentLetter;
+
+        public void ClearDialogue(){
+            CurrentDialogue = null;
+        }
     }
 }

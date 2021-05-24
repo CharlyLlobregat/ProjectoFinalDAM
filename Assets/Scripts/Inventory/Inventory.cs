@@ -23,13 +23,19 @@ namespace Inventory {
             });
             this.EquipeItemId.ForEach(x => {
                 var _item = ItemManager.Instance.Items.First(y => y.Id == x);
-                switch (_item.Type) {
-                    case ItemStats.ItemType.Weapon:
-                        if (Equiped.Exists(z => z.Item.Type == ItemStats.ItemType.Weapon)) return;
+                switch (_item.Weapon) {
+                    case ItemStats.WeaponType.Sword:
+                        if (Equiped.Exists(z => z.Item.Weapon == ItemStats.WeaponType.Sword)) return;
 
                         IsWeaponEquiped?.Invoke(_item.GetComponent<SpriteRenderer>().sprite, true);
                         break;
-                    case ItemStats.ItemType.Miscelaneous:
+                    case ItemStats.WeaponType.Arc:
+                        if (Equiped.Exists(z => z.Item.Weapon == ItemStats.WeaponType.Arc)) return;
+
+                        IsWeaponEquiped?.Invoke(_item.GetComponent<SpriteRenderer>().sprite, true);
+                        break;
+                    case ItemStats.WeaponType.Shield:
+                        if (Equiped.Exists(z => z.Item.Weapon == ItemStats.WeaponType.Shield)) return;
                         break;
                 }
 
@@ -90,11 +96,19 @@ namespace Inventory {
         }
 
         public void Equipe(ItemStats _item) {
-            switch (_item.Type) {
-                case ItemStats.ItemType.Weapon:
-                    if(Equiped.Exists(x => x.Item.Type == ItemStats.ItemType.Weapon)) return;
+            switch (_item.Weapon) {
+                case ItemStats.WeaponType.Sword:
+                    if(Equiped.Exists(x => x.Item.Weapon == ItemStats.WeaponType.Sword)) return;
 
                     IsWeaponEquiped?.Invoke(_item.GetComponent<SpriteRenderer>().sprite, true);
+                    break;
+                case ItemStats.WeaponType.Arc:
+                    if (Equiped.Exists(x => x.Item.Weapon == ItemStats.WeaponType.Arc)) return;
+
+                    IsWeaponEquiped?.Invoke(_item.GetComponent<SpriteRenderer>().sprite, true);
+                    break;
+                case ItemStats.WeaponType.Shield:
+                    if (Equiped.Exists(x => x.Item.Weapon == ItemStats.WeaponType.Shield)) return;
                     break;
             }
 

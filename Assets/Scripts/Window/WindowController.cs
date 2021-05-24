@@ -33,6 +33,9 @@ public class WindowController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     public void OnHide() {
         this.hide = true;
         this.gameObject.SetActive(!this.hide);
+
+        this.OnCloseWindow?.Invoke();
+        UIManager.Instance.OnUIClick = false;
     }
 
     public void OnClose() {
@@ -43,8 +46,8 @@ public class WindowController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
             this.GetComponent<RectTransform>().sizeDelta.x,
             this.closed ? 30 : Min.y
         );
-
         this.transform.Find("Content").gameObject.SetActive(!this.closed);
+        UIManager.Instance.OnUIClick = false;
     }
 
     public void OnPointerDown(PointerEventData eventData) => UIManager.Instance.OnUIClick = true;
@@ -54,4 +57,6 @@ public class WindowController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     public void OnPointerEnter(PointerEventData eventData) => UIManager.Instance.OnUIClick = true;
 
     public void OnPointerExit(PointerEventData eventData) => UIManager.Instance.OnUIClick = false;
+
+    public UnityEngine.Events.UnityEvent OnCloseWindow;
 }

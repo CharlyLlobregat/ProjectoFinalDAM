@@ -2555,6 +2555,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &989709434 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 167579523897213420, guid: fa157d36ffae00244902adb4f09484ba,
+    type: 3}
+  m_PrefabInstance: {fileID: 7979250862292280887}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe62e602fdbfdbd419c94d6d0e9212d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1002098091
 GameObject:
   m_ObjectHideFlags: 0
@@ -2594,6 +2606,9 @@ MonoBehaviour:
   Min: {x: 0, y: 0}
   Max: {x: 0, y: 0}
   closed: 0
+  OnCloseWindow:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1002098093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4153,6 +4168,9 @@ MonoBehaviour:
   Min: {x: 0, y: 0}
   Max: {x: 0, y: 0}
   closed: 0
+  OnCloseWindow:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1430288842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4719,6 +4737,12 @@ MonoBehaviour:
   - {fileID: 5326340756397611941, guid: 2b55bdc85fbe09247bb80b0593a4b425, type: 3}
   - {fileID: 7667313276701357538, guid: 62c244d766e2f164ab609aa1c8512c1b, type: 3}
   - {fileID: 8802527410198974160, guid: 0439466d0bf120244a52f8b03057fb9d, type: 3}
+  - {fileID: 122797639079185612, guid: c6cee6c56aeeab941aba77cd9593ca9e, type: 3}
+  - {fileID: 1335484948578748502, guid: 3cd66369182b2ea41a6fa22433cfa98f, type: 3}
+  - {fileID: 2212388404508499289, guid: 71d6f082db8f3ef4686969aa3f12c146, type: 3}
+  - {fileID: 2479812548716018037, guid: 46fbff507eb75ff47953833c6d8cb1c3, type: 3}
+  - {fileID: 1521441189783209070, guid: 43547142b80b5cf4091b85ae09477634, type: 3}
+  - {fileID: 7482462632359648057, guid: 6a4df5a8c56fc5e45b5841f7eb1dad18, type: 3}
 --- !u!4 &1643305317
 Transform:
   m_ObjectHideFlags: 0
@@ -4784,8 +4808,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Entities:
   - {fileID: 8277636293365886462, guid: 862d954f0a527c54e9f4b621e20cf9eb, type: 3}
-  - {fileID: 6042470018487446157, guid: 3cae72ea0abbca1489bf9aa9043fdddf, type: 3}
+  - {fileID: 9162604173473227432, guid: 4bd1aad976a8f2e4b80c0a9c91c66ef2, type: 3}
   - {fileID: 3327602565481238931, guid: bedf205ca0e923a40bcd0d9c359ae2f4, type: 3}
+  - {fileID: 2148548094140986085, guid: b1f0173b50806944aae10118024bf78d, type: 3}
+  - {fileID: 7618977210403363615, guid: 7dc5aa117f914aa4981882bce1b29882, type: 3}
+  - {fileID: 7315626203885537897, guid: 609c01daaea35724cae44d2d3a9ec392, type: 3}
   CurrentEntities: []
 --- !u!1 &1660913857
 GameObject:
@@ -4863,6 +4890,9 @@ MonoBehaviour:
   Min: {x: 0, y: 0}
   Max: {x: 0, y: 0}
   closed: 0
+  OnCloseWindow:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1707263173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6398,6 +6428,9 @@ MonoBehaviour:
   Min: {x: 0, y: 0}
   Max: {x: 0, y: 0}
   closed: 0
+  OnCloseWindow:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1966588193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9086,6 +9119,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945973245066773782, guid: fa157d36ffae00244902adb4f09484ba,
+        type: 3}
+      propertyPath: OnCloseWindow.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945973245066773782, guid: fa157d36ffae00244902adb4f09484ba,
+        type: 3}
+      propertyPath: OnCloseWindow.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945973245066773782, guid: fa157d36ffae00244902adb4f09484ba,
+        type: 3}
+      propertyPath: OnCloseWindow.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 989709434}
+    - target: {fileID: 4945973245066773782, guid: fa157d36ffae00244902adb4f09484ba,
+        type: 3}
+      propertyPath: OnCloseWindow.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945973245066773782, guid: fa157d36ffae00244902adb4f09484ba,
+        type: 3}
+      propertyPath: OnCloseWindow.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClearDialogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945973245066773782, guid: fa157d36ffae00244902adb4f09484ba,
+        type: 3}
+      propertyPath: OnCloseWindow.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4945973245066773783, guid: fa157d36ffae00244902adb4f09484ba,
         type: 3}

@@ -9,6 +9,8 @@ namespace Controller {
         protected override void Behaviour() {
             base.Behaviour();
 
+            this.interact.CanMove = !this.interact.IsTalking;
+
             if (!UIManager.Instance.OnUIClick && this.interact.CanAttack && Input.GetKeyDown(SettingsManager.Instance.Attack))   this.Attack();
             if (!UIManager.Instance.OnUIClick && this.interact.CanTalk && Input.GetKeyDown(SettingsManager.Instance.Talk))       this.Talk();
             if (!UIManager.Instance.OnUIClick && this.interact.CanPick && Input.GetKeyDown(SettingsManager.Instance.Pick))       this.Pick();

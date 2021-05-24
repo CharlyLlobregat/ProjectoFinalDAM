@@ -94,7 +94,8 @@ public class GameManager : MonoBehaviour {
 
     public void Spawn() {
         InstantiateEntity(this.entities.Entities.First(x => x.TryGetComponent<Controller.PlayerController>(out _)), new Vector3(5, 0, 0));
-        this.entities.Entities.Where(x => x.TryGetComponent<Controller.EnemyController>(out _)).ToList().ForEach(x => InstantiateEntity(x, Vector3.zero));
+        this.entities.Entities.Where(x => x.TryGetComponent<Controller.EnemyController>(out _)).ToList().ForEach(x => InstantiateEntity(x, new Vector3(Random.Range(-5, 6), Random.Range(-5, 6), 0)));
+        this.entities.Entities.Where(x => x.TryGetComponent<Controller.NPCController>(out _)).ToList().ForEach(x => InstantiateEntity(x, new Vector3(10, 5, 0)));
     }
 
     public void Unspawn() {

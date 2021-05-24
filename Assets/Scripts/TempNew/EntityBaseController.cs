@@ -29,15 +29,21 @@ namespace Controller {
         protected Animator animator;
 
         public Vector2 LastMovement {get; private set;}
+        public bool ShouldActivateWeapon;
 
         // Acciones que se realizan sobre el propio objecto, no sobre otro.
         #region SELF_ACTION
         protected void Move(Vector2 _direction){
+            uint itemSpeed = 0;
+            foreach ((Stats.ItemStats i, _) in this.inv.Equiped)
+                itemSpeed += i.Speed;
+            uint totalSpeed = itemSpeed + this.stats.Speed;
+
             // Calculo de movimiento
             this.rigidBody.velocity = new Vector2(
                     Mathf.Abs(_direction.x) < 0.2f ? 0 : (_direction.x),
                     Mathf.Abs(_direction.y) < 0.2f ? 0 : (_direction.y)
-                ).normalized * this.stats.Speed;
+                ).normalized * totalSpeed;
 
             // Dirección del movimiento
             if (Mathf.Abs(_direction.x) > 0.2f || Mathf.Abs(_direction.y) > 0.2f)
@@ -87,7 +93,7 @@ namespace Controller {
                 this.interact.OnKilledBy?.Invoke(_by);
 
             if(SettingsManager.Instance.ShowDamageNumbers)
-                if((_by.IsPlayer && SettingsManager.Instance.ShowEnemyDamageNumbers) || SettingsManager.Instance.ShowPlayerDamageNumbers)
+                if(((_by.IsPlayer || _by.Name == "Arrow") && SettingsManager.Instance.ShowEnemyDamageNumbers) || SettingsManager.Instance.ShowPlayerDamageNumbers)
                     UIManager.Instance.CreateDamageNumber(this.transform.position, totalDamage);
         }
         public void Picked(EntityStats _by) {
@@ -102,7 +108,7 @@ namespace Controller {
         }
         public void Talked(EntityStats _by) {
             if(_by.IsPlayer && TryGetComponent<Dialogue.DialogueController>(out Dialogue.DialogueController dialogue)) {
-                this.interact.IsTalking = true;
+                _by.GetComponent<Interaction.InteractionController>().IsTalking = true;
                 UIManager.Instance.StartDialogue(dialogue);
             }
         }
@@ -177,7 +183,12 @@ namespace Controller {
             }
         }
         private IEnumerator AttackTimeOut() {
-            yield return new WaitForSeconds(this.stats.AttackSpeed * 2 / Mathf.Pow(this.stats.AttackSpeed, 2f));
+            uint itemAttackSpeed = 0;
+            foreach ((Stats.ItemStats i, _) in this.inv.Equiped)
+                itemAttackSpeed += i.AttackSpeed;
+            uint totalAttackSpeed = itemAttackSpeed + this.stats.AttackSpeed;
+
+            yield return new WaitForSeconds(totalAttackSpeed * 2 / Mathf.Pow(totalAttackSpeed, 2f));
             this.interact.IsAttacking = false;
             ChangeAnimation("NOTATTACK");
         }
@@ -198,9 +209,11 @@ namespace Controller {
         }
 
         public void ActivateWeapon(Sprite _sprite, bool _active) {
-            GameObject weapon = this.transform.Find("Weapon")?.gameObject;
-            weapon.SetActive(_active);
-            if (weapon.TryGetComponent<SpriteRenderer>(out SpriteRenderer renderer)) renderer.sprite = _sprite;
+            if(ShouldActivateWeapon){
+                GameObject weapon = this.transform.Find("Weapon")?.gameObject;
+                weapon.SetActive(_active);
+                if (weapon.TryGetComponent<SpriteRenderer>(out SpriteRenderer renderer)) renderer.sprite = _sprite;
+            }
         }
         public virtual void Kill() {
             Managers.EntityManager.Instance.CurrentEntities.Remove(this.GetComponent<EntityStats>());
