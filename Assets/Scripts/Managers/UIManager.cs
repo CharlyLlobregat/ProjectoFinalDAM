@@ -163,12 +163,24 @@ public class UIManager : MonoBehaviour {
         SettingsWindow.gameObject.SetActive(false);
         PauseMenu.gameObject.SetActive(false);
         GameOver.gameObject.SetActive(false);
+        Credits.gameObject.SetActive(false);
 
         MainMenu.gameObject.SetActive(true);
 
         MainMenu.transform.Find("StartBtn").gameObject.SetActive(System.IO.File.Exists(Application.persistentDataPath + "/save.dat"));
     }
 
+    public void GoToGame() {
+        StatWindow.gameObject.SetActive(true);
+        InventoryWindow.gameObject.SetActive(true);
+        ItemWindow.gameObject.SetActive(false);
+        DialogueWindow.gameObject.SetActive(false);
+        SettingsWindow.gameObject.SetActive(false);
+
+        PauseMenu.gameObject.SetActive(false);
+        GameOver.gameObject.SetActive(false);
+        MainMenu.gameObject.SetActive(false);
+    }
     public void ShowGameOver(bool _isGood) {
         StatWindow.gameObject.SetActive(false);
         InventoryWindow.gameObject.SetActive(false);
