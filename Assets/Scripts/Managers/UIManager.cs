@@ -190,6 +190,11 @@ public class UIManager : MonoBehaviour {
         PauseMenu.gameObject.SetActive(false);
         GameOver.gameObject.SetActive(false);
         MainMenu.gameObject.SetActive(false);
+
+        var plySpw = Managers.EntityManager.Instance.CurrentEntities.Find(x => x.Name == "Player").transform.position;
+        var cam = GameObject.Find("Main Camera");
+
+        cam.transform.position = new Vector3(plySpw.x, plySpw.y, cam.transform.position.z);
     }
     public void ShowGameOver(bool _isGood) {
         StatWindow.gameObject.SetActive(false);
