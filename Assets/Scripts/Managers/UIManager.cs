@@ -44,7 +44,7 @@ public class UIManager : MonoBehaviour {
                 if (this.transform.GetChild(i).TryGetComponent<WindowController>(out WindowController win)) win.OnHide();
 
         if(!System.IO.File.Exists(Application.persistentDataPath + "/save.dat"))
-            this.transform.Find("MainMenu").Find("StartBtn").gameObject.SetActive(false);
+            MainMenu.transform.Find("Options").Find("StartBtn").gameObject.SetActive(false);
     }
 
     public void UpdateExp(uint _currentEXP, uint _maxEXP) {
@@ -168,7 +168,7 @@ public class UIManager : MonoBehaviour {
 
         MainMenu.gameObject.SetActive(true);
 
-        MainMenu.transform.Find("StartBtn").gameObject.SetActive(System.IO.File.Exists(Application.persistentDataPath + "/save.dat"));
+        MainMenu.transform.Find("Options").Find("StartBtn").gameObject.SetActive(System.IO.File.Exists(Application.persistentDataPath + "/save.dat"));
     }
 
     public void GoToGame() {

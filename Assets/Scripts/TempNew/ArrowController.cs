@@ -41,7 +41,7 @@ namespace Controller {
 
             this.Move(this.direction);
             if(TryGetComponent<Interaction.InteractionManager>(out Interaction.InteractionManager _intMan)) {
-                var it = _intMan.GetNearest(_intMan.Interactables.Where(x => x.CanBeAttacked));
+                var it = _intMan.GetNearest(_intMan.Interactables.Where(x => x.CanBeAttacked && x.GetComponent<Interaction.InteractionController>().IsPlayer != this.interact.IsPlayer));
                 if(it != null) {
                         it?.OnAttacked?.Invoke(
                         GetComponent<Stats.EntityStats>(),

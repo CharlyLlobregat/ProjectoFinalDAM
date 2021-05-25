@@ -87,7 +87,7 @@ namespace Controller {
             uint itemDefense = 0;
             foreach ((Stats.ItemStats i, _) in this.inv.Equiped)
                 itemDefense += i.Defense;
-            uint totalDamage = (uint)Mathf.Max(_damage - itemDefense - this.stats.Defense, 0);
+            uint totalDamage = (uint)Mathf.Max((int) _damage - (int)itemDefense - (int)this.stats.Defense, 0);
 
             this.stats.ReduceHealth(totalDamage);
             if(this.stats.CurrentHealth == 0)
@@ -119,7 +119,6 @@ namespace Controller {
         }
         public void Killed(EntityStats _by) {
             _by.AddExp(this.stats.EXP);
-            DropInventory();
             Kill();
         }
         #endregion
