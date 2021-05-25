@@ -70,7 +70,7 @@ namespace Controller {
                             this.LastMovement = -(this.transform.position - this.currentInterestPoint).normalized;
                             this.Attack();
                     }
-                } else if(GetComponent<Interaction.InteractionManager>().Interactables.Exists(x => x.GetComponent<Stats.EntityStats>().IsPlayer))
+                } else if(GetComponent<Interaction.InteractionManager>().Interactables.Exists(x => {if(x.TryGetComponent<Stats.EntityStats>(out Stats.EntityStats ent)) return ent.IsPlayer; else return false; }))
                     this.Attack();
 
             /*

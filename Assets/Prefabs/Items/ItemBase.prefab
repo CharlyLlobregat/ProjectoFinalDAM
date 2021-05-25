@@ -76,8 +76,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 411968805
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -2028688851913010192, guid: 723e60c9186084d49a5a91caaf6e7941,
     type: 3}
@@ -137,6 +137,7 @@ MonoBehaviour:
   isMoving: 0
   isTalking: 0
   isAttacking: 0
+  IsPlayer: 0
   OnIsMovingChange:
     m_PersistentCalls:
       m_Calls: []
@@ -193,6 +194,9 @@ MonoBehaviour:
   OnPlaced:
     m_PersistentCalls:
       m_Calls: []
+  OnKilledBy:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &9203610178491095994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,6 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Interactables: []
+  LevelToWin: 0
 --- !u!50 &8960147378338403339
 Rigidbody2D:
   serializedVersion: 4
@@ -239,6 +244,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46104545be437a744a0db25401c1229d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  equiped: 
+  amount: 
   BaseItemId: 
   EquipeItemId: 
   OnInventoryChange:
@@ -354,3 +361,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a98641543f89244881f0052077d1fdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LastMovement: {x: 0, y: 0}
+  ShouldActivateWeapon: 0

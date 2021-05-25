@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour {
     }
 
 
-    public void InstantiateArrow(Stats.ItemStats _arrow, Vector3 _position, Vector2 _direction, uint _speed) {
+    public void InstantiateArrow(Stats.ItemStats _arrow, Vector3 _position, Vector2 _direction, uint _speed, bool isPlayer) {
         if(this.entities.GetEntity("Arrow", out Stats.EntityStats _entity)) {
             float rot = 0;
 
@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour {
             arrow.GetComponent<SpriteRenderer>().sprite = this.items.GetItem(_arrow).GetComponent<SpriteRenderer>().sprite;
             arrow.GetComponent<Controller.ArrowController>().MoveDirection(_direction == Vector2.zero ? Vector2.down : _direction);
             arrow.GetComponent<Stats.EntityStats>().Speed = _speed;
+            arrow.GetComponent<Interaction.InteractionController>().IsPlayer = isPlayer;
             arrow.GetComponent<Inventory.Inventory>().amount[ItemManager.Instance.Items.FindIndex(x => x.Id == _arrow.Id)] = 1;
             arrow.GetComponent<Inventory.Inventory>().equiped[ItemManager.Instance.Items.FindIndex(x => x.Id == _arrow.Id)] = true;
 
@@ -142,10 +143,28 @@ public class GameManager : MonoBehaviour {
                     eCon.Kill();
                 if (x.TryGetComponent<Controller.NPCController>(out Controller.NPCController nCon))
                     nCon.Kill();
+                if (x.TryGetComponent<Controller.ItemController>(out Controller.ItemController iCon))
+                    iCon.Kill();
             });
         }catch{ }
     }
 
+    public void UnspawnAllButPlayer() {
+        Stats.EntityStats[] temp = new Stats.EntityStats[this.entities.CurrentEntities.Count];
+        this.entities.CurrentEntities.CopyTo(temp);
+        try {
+            temp.ToList().ForEach(x => {
+                if (x.TryGetComponent<Controller.ArrowController>(out Controller.ArrowController aCon))
+                    aCon.Kill();
+                if (x.TryGetComponent<Controller.EnemyController>(out Controller.EnemyController eCon))
+                    eCon.Kill();
+                if (x.TryGetComponent<Controller.NPCController>(out Controller.NPCController nCon))
+                    nCon.Kill();
+                if (x.TryGetComponent<Controller.ItemController>(out Controller.ItemController iCon))
+                    iCon.Kill();
+            });
+        } catch { }
+    }
     public enum ControllerType {
         Base = 0,
         Player = 1,
@@ -203,6 +222,7 @@ public class GameManager : MonoBehaviour {
 
                 entity.GetComponent<Inventory.Inventory>().OnLoad(reader);
             }
+            GameObject.Find("Main Camera").transform.position = new Vector3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
         }
     }
     public void Save() {
@@ -241,6 +261,10 @@ public class GameManager : MonoBehaviour {
                 // Inventory
                 x.GetComponent<Inventory.Inventory>().OnSave(writer);
             });
+            Vector3 cameraPos = GameObject.Find("Main Camera").transform.position;
+            writer.Write(cameraPos.x);
+            writer.Write(cameraPos.y);
+            writer.Write(cameraPos.z);
         }
     }
 }

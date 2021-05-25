@@ -26,6 +26,10 @@ namespace Interaction {
             GetNearest(this.Interactables.Where(x => x.CanBeTalked))?.OnTalked?.Invoke(GetComponent<EntityStats>());
         }
 
+        public void OnActivate() {
+            GetNearest(this.Interactables.Where(x => x.CanBeActivated))?.OnActivated.Invoke();
+        }
+
         public void OnUse(ItemStats _item) {
             _item?.GetComponent<InteractionController>()?.OnUsed?.Invoke();
         }

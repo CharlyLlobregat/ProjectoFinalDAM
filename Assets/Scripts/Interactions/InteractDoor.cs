@@ -44,7 +44,6 @@ public class InteractDoor : MonoBehaviour {
     public void Use() {
         if (this.opened) Close();
         else if (!this.opened) Open();
-        Debug.Log("Intereacted");
     }
 
     private void OnTriggerStay2D(Collider2D other) {

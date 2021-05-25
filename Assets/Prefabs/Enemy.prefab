@@ -128,7 +128,12 @@ PrefabInstance:
     - target: {fileID: 7549340019148319944, guid: 5e52287e08fe196448646cedbddfe7fd,
         type: 3}
       propertyPath: OnKilledBy.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549340019148319944, guid: 5e52287e08fe196448646cedbddfe7fd,
+        type: 3}
+      propertyPath: OnKilledBy.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7549340019148319944, guid: 5e52287e08fe196448646cedbddfe7fd,
         type: 3}
@@ -152,6 +157,11 @@ PrefabInstance:
       objectReference: {fileID: 1757320983}
     - target: {fileID: 7549340019148319944, guid: 5e52287e08fe196448646cedbddfe7fd,
         type: 3}
+      propertyPath: OnKilledBy.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1757320983}
+    - target: {fileID: 7549340019148319944, guid: 5e52287e08fe196448646cedbddfe7fd,
+        type: 3}
       propertyPath: OnPicked.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Picked
       objectReference: {fileID: 0}
@@ -168,12 +178,17 @@ PrefabInstance:
     - target: {fileID: 7549340019148319944, guid: 5e52287e08fe196448646cedbddfe7fd,
         type: 3}
       propertyPath: OnKilledBy.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Killed
+      value: DropInventory
       objectReference: {fileID: 0}
     - target: {fileID: 7549340019148319944, guid: 5e52287e08fe196448646cedbddfe7fd,
         type: 3}
       propertyPath: OnKilledBy.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Kill
+      value: Killed
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549340019148319944, guid: 5e52287e08fe196448646cedbddfe7fd,
+        type: 3}
+      propertyPath: OnKilledBy.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7549340019148319948, guid: 5e52287e08fe196448646cedbddfe7fd,
         type: 3}

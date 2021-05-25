@@ -8,7 +8,7 @@ public class WeaponDamage : MonoBehaviour {
     public float deltaTimeInside;
 
     private void OnTriggerEnter2D(Collider2D _other) {
-        if (this.transform.parent.GetComponent<Interaction.InteractionController>().IsAttacking && _other.GetComponent<Interaction.InteractionController>().CanBeAttacked && _other.transform != this.transform.parent) {
+        if (this.transform.parent.GetComponent<Interaction.InteractionController>().IsAttacking && _other.TryGetComponent<Interaction.InteractionController>(out Interaction.InteractionController inCon) && inCon.CanBeAttacked && _other.transform != this.transform.parent) {
             if (BloodAnim != null) {
                 Destroy(
                     Instantiate(

@@ -102,15 +102,15 @@ MonoBehaviour:
   CanTalk: 0
   CanMove: 0
   CanUse: 0
-  CanBeActivated: 0
+  CanBeActivated: 1
   CanBePlaced: 0
   CanBePicked: 0
   CanBeAttacked: 0
   CanBeTalked: 0
   CanBeMoved: 0
-  CanBeUsed: 1
+  CanBeUsed: 0
   isMoving: 0
-  isTalking: 0
+  isTalking: 1
   isAttacking: 0
   IsPlayer: 0
   OnIsMovingChange:
@@ -143,6 +143,9 @@ MonoBehaviour:
   OnPlace:
     m_PersistentCalls:
       m_Calls: []
+  OnActivate:
+    m_PersistentCalls:
+      m_Calls: []
   OnAttacked:
     m_PersistentCalls:
       m_Calls: []
@@ -153,6 +156,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnUsed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnActivated:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 247648001266438418}
@@ -439,7 +445,7 @@ PrefabInstance:
     - target: {fileID: 2369299662366743829, guid: 2c1f76b97928c364ca7cf7be5749dd0a,
         type: 3}
       propertyPath: OnTeleport.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2369299662366743829, guid: 2c1f76b97928c364ca7cf7be5749dd0a,
         type: 3}
@@ -621,6 +627,21 @@ PrefabInstance:
       propertyPath: TeleportOutput
       value: 
       objectReference: {fileID: 6066165708607911551}
+    - target: {fileID: 2369299662366743829, guid: 2c1f76b97928c364ca7cf7be5749dd0a,
+        type: 3}
+      propertyPath: OnTeleport.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369299662366743829, guid: 2c1f76b97928c364ca7cf7be5749dd0a,
+        type: 3}
+      propertyPath: OnTeleport.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369299662366743829, guid: 2c1f76b97928c364ca7cf7be5749dd0a,
+        type: 3}
+      propertyPath: OnTeleport.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2369299662366743831, guid: 2c1f76b97928c364ca7cf7be5749dd0a,
         type: 3}
       propertyPath: m_Name

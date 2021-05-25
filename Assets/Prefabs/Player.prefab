@@ -105,6 +105,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7549340019148319944, guid: 5e52287e08fe196448646cedbddfe7fd,
         type: 3}
+      propertyPath: OnActivate.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549340019148319944, guid: 5e52287e08fe196448646cedbddfe7fd,
+        type: 3}
       propertyPath: OnAttacked.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -122,6 +127,11 @@ PrefabInstance:
         type: 3}
       propertyPath: OnTalked.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549340019148319944, guid: 5e52287e08fe196448646cedbddfe7fd,
+        type: 3}
+      propertyPath: OnActivate.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7549340019148319944, guid: 5e52287e08fe196448646cedbddfe7fd,
         type: 3}
@@ -145,6 +155,11 @@ PrefabInstance:
       objectReference: {fileID: 5052258114228779417}
     - target: {fileID: 7549340019148319944, guid: 5e52287e08fe196448646cedbddfe7fd,
         type: 3}
+      propertyPath: OnActivate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8277636293365886433}
+    - target: {fileID: 7549340019148319944, guid: 5e52287e08fe196448646cedbddfe7fd,
+        type: 3}
       propertyPath: OnAttacked.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5052258114228779417}
@@ -162,6 +177,16 @@ PrefabInstance:
         type: 3}
       propertyPath: OnTalked.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Talked
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549340019148319944, guid: 5e52287e08fe196448646cedbddfe7fd,
+        type: 3}
+      propertyPath: OnActivate.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549340019148319944, guid: 5e52287e08fe196448646cedbddfe7fd,
+        type: 3}
+      propertyPath: OnActivate.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnActivate
       objectReference: {fileID: 0}
     - target: {fileID: 7549340019148319944, guid: 5e52287e08fe196448646cedbddfe7fd,
         type: 3}
@@ -186,6 +211,11 @@ PrefabInstance:
     - target: {fileID: 7549340019148319944, guid: 5e52287e08fe196448646cedbddfe7fd,
         type: 3}
       propertyPath: OnTalked.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549340019148319944, guid: 5e52287e08fe196448646cedbddfe7fd,
+        type: 3}
+      propertyPath: OnActivate.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7549340019148319944, guid: 5e52287e08fe196448646cedbddfe7fd,
@@ -446,7 +476,7 @@ PrefabInstance:
     - target: {fileID: 7549340019148319958, guid: 5e52287e08fe196448646cedbddfe7fd,
         type: 3}
       propertyPath: hp
-      value: 200
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 7549340019148319958, guid: 5e52287e08fe196448646cedbddfe7fd,
         type: 3}
@@ -466,7 +496,7 @@ PrefabInstance:
     - target: {fileID: 7549340019148319958, guid: 5e52287e08fe196448646cedbddfe7fd,
         type: 3}
       propertyPath: Defense
-      value: 5
+      value: 105
       objectReference: {fileID: 0}
     - target: {fileID: 7549340019148319958, guid: 5e52287e08fe196448646cedbddfe7fd,
         type: 3}
@@ -481,7 +511,7 @@ PrefabInstance:
     - target: {fileID: 7549340019148319958, guid: 5e52287e08fe196448646cedbddfe7fd,
         type: 3}
       propertyPath: currentHp
-      value: 200
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 7549340019148319958, guid: 5e52287e08fe196448646cedbddfe7fd,
         type: 3}

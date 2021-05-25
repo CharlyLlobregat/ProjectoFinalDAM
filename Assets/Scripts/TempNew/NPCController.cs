@@ -16,18 +16,20 @@ namespace Controller {
         protected override void Behaviour() {
             base.Behaviour();
 
-            this.currentInterestPoint = InterestPoints[(int)this.currentInterest];
-            shouldMove = (this.transform.position - this.currentInterestPoint).magnitude > 0.1f;
+            if(InterestPoints.Count > 0){
+                this.currentInterestPoint = InterestPoints[(int)this.currentInterest];
+                shouldMove = (this.transform.position - this.currentInterestPoint).magnitude > 0.1f;
 
-            if (this.interact.CanMove && this.shouldMove)
-                MoveTo(new Vector2(
-                    this.currentInterestPoint.x,
-                    this.currentInterestPoint.y
-                ));
-            else if (!this.shouldMove) this.currentInterest++;
+                if (this.interact.CanMove && this.shouldMove)
+                    MoveTo(new Vector2(
+                        this.currentInterestPoint.x,
+                        this.currentInterestPoint.y
+                    ));
+                else if (!this.shouldMove) this.currentInterest++;
 
-            if (this.currentInterest >= InterestPoints.Count)
-                this.currentInterest = 0;
+                if (this.currentInterest >= InterestPoints.Count)
+                    this.currentInterest = 0;
+            }
         }
 
         public new void OnLoad(BinaryReader _reader) {

@@ -166,7 +166,7 @@ namespace Controller {
                         ItemStats arrow = this.inv.Equiped.First(x => x.Item.Weapon == ItemStats.WeaponType.Arrow).Item;
                         ItemStats arc = this.inv.Equiped.First(x => x.Item.Weapon == ItemStats.WeaponType.Arc).Item;
 
-                        GameManager.Instance.InstantiateArrow(arrow, this.transform.position, this.LastMovement, arc.Strength);
+                        GameManager.Instance.InstantiateArrow(arrow, this.transform.position, this.LastMovement, arc.Strength, this.interact.IsPlayer);
                         this.inv.DecrementAmount(arrow);
                     }
                 }else{
@@ -201,7 +201,9 @@ namespace Controller {
             ChangeAnimation("NOTATTACK");
         }
 
-        protected void Activate(){ }
+        protected void Activate(){
+            this.interact?.OnActivate?.Invoke();
+        }
         #endregion
 
         public void DropInventory() {

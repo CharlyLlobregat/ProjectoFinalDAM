@@ -35,7 +35,8 @@ public class UIManager : MonoBehaviour {
         Instance = this;
     }
     private void Start() {
-        this.baseColor = new Color(1, 1, 1, 0.433f);
+        this.baseColor = new Color32(132, 255, 200, (byte) 0.433f * 255);
+
         for (int i = 0; i < this.transform.childCount; i++)
             if (!(
                 this.transform.GetChild(i).name == "MainMenu" ||
@@ -124,7 +125,8 @@ public class UIManager : MonoBehaviour {
 
         for (int i = 0; i < this.transform.childCount; i++)
             if(this.transform.GetChild(i).name == "MainMenu" ||
-                this.transform.GetChild(i).name == "PauseMenu")
+                this.transform.GetChild(i).name == "PauseMenu" ||
+                this.transform.GetChild(i).name == "Creditos")
                 this.transform.GetChild(i).GetComponent<Image>().color = new Color(_rgb.r, _rgb.g, _rgb.b, 1f);
             else
                 this.transform.GetChild(i).GetComponent<Image>().color = _rgb;

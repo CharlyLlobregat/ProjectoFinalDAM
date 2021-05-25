@@ -76,12 +76,14 @@ namespace Interaction {
         [SerializeField] public TalkEvent OnTalk;
         [SerializeField] public UseEvent OnUse;
         [SerializeField] public PlaceEvent OnPlace;
+        [SerializeField] public UnityEvent OnActivate;
 
         [Header("Actions to execute on different events")]
         [SerializeField] public AttackedEvent OnAttacked;
         [SerializeField] public PickedEvent OnPicked;
         [SerializeField] public TalkedEvent OnTalked;
         [SerializeField] public UsedEvent OnUsed;
+        [SerializeField] public UnityEvent OnActivated;
         [SerializeField] public PlacedEvent OnPlaced;
         [SerializeField] public KilledEvent OnKilledBy;
 
