@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour {
     private ItemManager items;
     private EntityManager entities;
 
+    public GameObject Map;
+    public List<InteractDoor> Doors;
+
     private void Awake() {
         Instance = this;
         this.settings = GetComponent<SettingsManager>();
@@ -23,17 +26,13 @@ public class GameManager : MonoBehaviour {
         this.entities = GetComponent<EntityManager>();
     }
 
+
     public void InstantiateArrow(Stats.ItemStats _arrow, Vector3 _position, Vector2 _direction, uint _speed) {
         if(this.entities.GetEntity("Arrow", out Stats.EntityStats _entity)) {
-            int rot = 0;
-            if(_direction == Vector2.up)        rot = -45;
-            else if(_direction == Vector2.down || _direction == Vector2.zero) rot = 135;
-            else if(_direction == Vector2.left) rot = 45;
-            else if(_direction == Vector2.right) rot = -135;
-            else if(_direction == (Vector2.up + Vector2.left)) rot = 0;
-            else if(_direction == (Vector2.up + Vector2.right)) rot = 90;
-            else if(_direction == (Vector2.down + Vector2.left)) rot = -90;
-            else if(_direction == (Vector2.down + Vector2.right)) rot = 180;
+            float rot = 0;
+
+            if(_direction.x > 0)        rot = -135 + (90 * _direction.y);
+            else if(_direction.x < 0)   rot = -315 - (90 * _direction.y);
 
             GameObject arrow = Instantiate(
                 _entity.gameObject,
@@ -92,25 +91,59 @@ public class GameManager : MonoBehaviour {
         });
     }
 
-    public void Spawn() {
-        InstantiateEntity(this.entities.Entities.First(x => x.TryGetComponent<Controller.PlayerController>(out _)), new Vector3(5, 0, 0));
-        this.entities.Entities.Where(x => x.TryGetComponent<Controller.EnemyController>(out _)).ToList().ForEach(x => InstantiateEntity(x, new Vector3(Random.Range(-5, 6), Random.Range(-5, 6), 0)));
-        this.entities.Entities.Where(x => x.TryGetComponent<Controller.NPCController>(out _)).ToList().ForEach(x => InstantiateEntity(x, new Vector3(10, 5, 0)));
+    public void SpawnPlayer() {
+        InstantiateEntity(
+          this.entities.Entities.Find(x => x.IsPlayer),
+          GameObject.Find("PlayerSpawn").transform.position
+        );
+    }
+
+    public void Spawn(string _zone) {
+        string[] enemies = new string[] { "ESK", "C", "N", "A", "O", "BM", "KP", "BG", "SK", "NPC" };
+        System.Array.ForEach(enemies, x => {
+            var en = Map.transform.Find(x + "_" + _zone);
+            if(en != null)
+                for (int i = 0; i < en.childCount; i++) {
+                    var entity = InstantiateEntity(
+                        this.entities.Entities.Find(ent => ent.Name == x),
+                        en.GetChild(i).transform.position
+                    );
+
+                    switch (_zone) {
+                        case "Garden":
+                            if(entity.Name == "BG")
+                                entity.OnDead.AddListener(() => GameManager.Instance.ShowDoor(_zone));
+                            break;
+                        case "Dungeon":
+                            if (entity.Name == "BM")
+                                entity.OnDead.AddListener(() => GameManager.Instance.ShowDoor(_zone));
+                            break;
+                        case "Boss":
+                            if (entity.Name == "SK")
+                                entity.OnDead.AddListener(() => GameManager.Instance.ShowDoor(_zone));
+                            break;
+                    }
+                }
+        });
     }
 
     public void Unspawn() {
         Stats.EntityStats[] temp = new Stats.EntityStats[this.entities.CurrentEntities.Count];
         this.entities.CurrentEntities.CopyTo(temp);
-        temp.ToList().ForEach(x => {
-            if (x.TryGetComponent<Controller.PlayerController>(out Controller.PlayerController pCon))
-                pCon.Kill();
-            if (x.TryGetComponent<Controller.EntityBaseController>(out Controller.EntityBaseController ebCon))
-                ebCon.Kill();
-            if (x.TryGetComponent<Controller.ArrowController>(out Controller.ArrowController aCon))
-                aCon.Kill();
-            if (x.TryGetComponent<Controller.EnemyController>(out Controller.EnemyController eCon))
-                eCon.Kill();
-        });
+        try{
+            temp.ToList().ForEach(x => {
+                if (x.TryGetComponent<Controller.PlayerController>(out Controller.PlayerController pCon))
+                    pCon.Kill();
+                if (x.TryGetComponent<Controller.EntityBaseController>(out Controller.EntityBaseController ebCon))
+                    ebCon.Kill();
+                if (x.TryGetComponent<Controller.ArrowController>(out Controller.ArrowController aCon))
+                    aCon.Kill();
+                if (x.TryGetComponent<Controller.EnemyController>(out Controller.EnemyController eCon))
+                    eCon.Kill();
+                if (x.TryGetComponent<Controller.NPCController>(out Controller.NPCController nCon))
+                    nCon.Kill();
+            });
+        }catch{ }
     }
 
     public enum ControllerType {
@@ -118,6 +151,13 @@ public class GameManager : MonoBehaviour {
         Player = 1,
         Enemy = 2,
         Arrow = 3
+    }
+
+    public void ShowDoor(string _map) {
+        Doors.First(x => x.gameObject.transform.parent.name == _map).gameObject.SetActive(true);
+    }
+    public void HideDoor(string _map) {
+        Doors.First(x => x.gameObject.transform.parent.name == _map).gameObject.SetActive(false);
     }
 
     public void Load() {

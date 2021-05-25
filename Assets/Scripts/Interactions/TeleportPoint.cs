@@ -34,12 +34,14 @@ namespace Teleport {
         private void Move(GameObject _gameObject, Transform _position) {
             _gameObject.transform.position = _position.position;
 
-            if(_gameObject.CompareTag("Player"))
+            if(_gameObject.CompareTag("Player")){
                 Camera.main.transform.position = new Vector3(
                     _position.position.x,
                     _position.position.y,
                     Camera.main.transform.position.z
                 );
+                OnTeleport?.Invoke();
+            }
         }
     }
 }

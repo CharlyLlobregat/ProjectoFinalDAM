@@ -10,17 +10,22 @@ PrefabInstance:
     - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
       propertyPath: Id
-      value: 12
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
+        type: 3}
+      propertyPath: lvl
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
       propertyPath: Name
-      value: Hell Sword
+      value: Fire Sword
       objectReference: {fileID: 0}
     - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
       propertyPath: Speed
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
@@ -30,12 +35,12 @@ PrefabInstance:
     - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
       propertyPath: Strength
-      value: 5
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
       propertyPath: AttackSpeed
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2378485329672732380, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
@@ -116,7 +121,7 @@ PrefabInstance:
     - target: {fileID: 9158615175245205086, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
       propertyPath: BaseItemId.Array.data[0]
-      value: 12
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9eaca84921931bd45bfd14c73671990b, type: 3}

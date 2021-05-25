@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Controller {
     public class PlayerController : EntityBaseController {
@@ -30,10 +32,15 @@ namespace Controller {
 
             Instance = this;
             GameObject.Find("Main Camera").GetComponent<CameraFollow>().Target = this.gameObject;
+            Inventory.InventoryManager.Instance.UpdateInventory();
         }
 
         public override void Kill() {
             base.Kill();
+
+            Inventory.InventoryManager.Instance.InvSelect.GetComponentsInChildren<Toggle>().ToList().ForEach(x => Destroy(x.gameObject));
+            Inventory.InventoryManager.Instance.EquipedSelect.GetComponentsInChildren<Toggle>().ToList().ForEach(x => Destroy(x.gameObject));
+
             UIManager.Instance.ShowGameOver(false);
         }
     }

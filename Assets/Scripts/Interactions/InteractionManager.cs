@@ -14,6 +14,7 @@ namespace Interaction {
     public class InteractionManager : MonoBehaviour {
         public List<InteractionController> Interactables;
 
+        public uint LevelToWin;
         public void OnAttack(uint _damage) {
             GetNearest(this.Interactables.Where(x => x.CanBeAttacked))?.OnAttacked?.Invoke(GetComponent<EntityStats>(), _damage);
         }
@@ -32,6 +33,11 @@ namespace Interaction {
             _item?.GetComponent<InteractionController>()?.OnPlaced?.Invoke(_position);
         }
 
+
+        public void ShowWin(uint _lvl) {
+            if (_lvl == LevelToWin)
+                UIManager.Instance.ShowGameOver(true);
+        }
         private void OnTriggerEnter2D(Collider2D _other) {
             if (_other.TryGetComponent<InteractionController>(out InteractionController temp))
                 this.Interactables.Add(temp);
@@ -60,7 +66,9 @@ namespace Interaction {
                     }
 
                     return false;
-                })?.OrderBy(x => (this.transform.position - x.InteractionPoint.position).magnitude)
+                })
+                ?.Where(x => x.IsPlayer == !GetComponent<InteractionController>().IsPlayer)
+                ?.OrderBy(x => (this.transform.position - x.InteractionPoint.position).magnitude)
                 ?.First();
             } catch (System.InvalidOperationException) {
                 return null;

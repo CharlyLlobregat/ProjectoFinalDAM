@@ -28,8 +28,9 @@ namespace Controller {
         protected Interaction.InteractionController interact;
         protected Animator animator;
 
-        public Vector2 LastMovement {get; private set;}
+        [SerializeField] public Vector2 LastMovement;
         public bool ShouldActivateWeapon;
+        protected bool isPlayer;
 
         // Acciones que se realizan sobre el propio objecto, no sobre otro.
         #region SELF_ACTION
@@ -149,8 +150,9 @@ namespace Controller {
         protected void Attack(){
             if(!this.interact.IsAttacking) {
                 ItemStats.WeaponType wtype = ItemStats.WeaponType.None;
+                bool hasArc = false;
                 try {
-                    wtype = this.inv.Equiped.First(x => x.Item.Type == ItemStats.ItemType.Weapon || x.Item.Weapon == ItemStats.WeaponType.Arrow).Item.Weapon;
+                    wtype = this.inv.Equiped.First(x => x.Item.Type == ItemStats.ItemType.Weapon).Item.Weapon;
                 }catch{ }
 
                 if (wtype == ItemStats.WeaponType.Sword) {
@@ -167,15 +169,21 @@ namespace Controller {
                         GameManager.Instance.InstantiateArrow(arrow, this.transform.position, this.LastMovement, arc.Strength);
                         this.inv.DecrementAmount(arrow);
                     }
-                }else if(wtype == ItemStats.WeaponType.Arrow) {
-                    uint itemDamage = 0;
-                    foreach ((Stats.ItemStats i, _) in this.inv.Equiped)
-                        itemDamage += i.Strength;
+                }else{
+                    try {
+                        wtype = this.inv.Equiped.First(x => x.Item.Weapon == ItemStats.WeaponType.Arrow).Item.Weapon;
+                    } catch { }
 
-                    this.interact.OnAttack?.Invoke(this.stats.Strength + itemDamage);
+                    if (wtype == ItemStats.WeaponType.Arrow) {
+                        uint itemDamage = 0;
+                        foreach ((Stats.ItemStats i, _) in this.inv.Equiped)
+                            itemDamage += i.Strength;
+
+                        this.interact.OnAttack?.Invoke(this.stats.Strength + itemDamage);
+                    }
                 }
 
-                if(wtype != ItemStats.WeaponType.None) {
+                if (wtype != ItemStats.WeaponType.None) {
                     this.interact.IsAttacking = true;
                     ChangeAnimation("ATTACK");
                     StartCoroutine(AttackTimeOut());
@@ -188,7 +196,7 @@ namespace Controller {
                 itemAttackSpeed += i.AttackSpeed;
             uint totalAttackSpeed = itemAttackSpeed + this.stats.AttackSpeed;
 
-            yield return new WaitForSeconds(totalAttackSpeed * 2 / Mathf.Pow(totalAttackSpeed, 2f));
+            yield return new WaitForSeconds(0.85f - (totalAttackSpeed * 0.15f));
             this.interact.IsAttacking = false;
             ChangeAnimation("NOTATTACK");
         }

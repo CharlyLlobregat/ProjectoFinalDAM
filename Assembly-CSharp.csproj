@@ -65,11 +65,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
+    <Compile Include="Assets\Scripts\ChangeMap.cs" />
     <Compile Include="Assets\Scripts\DamageNumber.cs" />
     <Compile Include="Assets\Scripts\DynamicSprite.cs" />
     <Compile Include="Assets\Scripts\EnemyHealthBar.cs" />
     <Compile Include="Assets\Scripts\GameConstants.cs" />
-    <Compile Include="Assets\Scripts\InteractDoor.cs" />
     <Compile Include="Assets\Scripts\Interactions\InteractDoor.cs" />
     <Compile Include="Assets\Scripts\Interactions\InteractionController.cs" />
     <Compile Include="Assets\Scripts\Interactions\InteractionManager.cs" />

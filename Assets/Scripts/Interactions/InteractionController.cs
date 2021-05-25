@@ -38,6 +38,8 @@ namespace Interaction {
         [SerializeField] private bool isMoving;
         [SerializeField] private bool isTalking;
         [SerializeField] private bool isAttacking;
+
+        public bool IsPlayer;
         public bool IsMoving {
             get => this.isMoving;
             set {

@@ -2,11 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public interface IUse {
-    void Use();
-}
-public class InteractDoor : MonoBehaviour, IUse {
+public class InteractDoor : MonoBehaviour {
 
     [Tooltip("El sprite que mostrar con la puerta cerrada.")]
     public Sprite DoorOpen;
@@ -22,12 +18,12 @@ public class InteractDoor : MonoBehaviour, IUse {
     private GameObject doorSprite;
 
     private void Start() {
-        this.doorSprite = this.transform.Find("DoorSprite").gameObject;
+        this.doorSprite = this.gameObject;
 
         if (DoorOpen == null || DoorClosed == null || this.doorSprite == null) throw new System.NullReferenceException();
 
         opened = false;
-        if (this.doorSprite.GetComponent<SpriteRenderer>().sprite == null) this.doorSprite.GetComponent<SpriteRenderer>().sprite = DoorClosed;
+        if (this.doorSprite.GetComponent<SpriteRenderer>()?.sprite == null) this.doorSprite.GetComponent<SpriteRenderer>().sprite = DoorClosed;
     }
     public void Open() {
         if (!this.opened) {

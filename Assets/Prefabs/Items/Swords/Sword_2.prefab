@@ -24,6 +24,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
+      propertyPath: lvl
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
+        type: 3}
       propertyPath: Name
       value: Ice Sword
       objectReference: {fileID: 0}
@@ -35,7 +40,12 @@ PrefabInstance:
     - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
       propertyPath: Strength
-      value: 5
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
+        type: 3}
+      propertyPath: AttackSpeed
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2310146914259558985, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}

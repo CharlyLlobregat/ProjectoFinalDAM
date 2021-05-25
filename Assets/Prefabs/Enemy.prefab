@@ -49,15 +49,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29398adb084c3d943ae31f169431c20d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LastMovement: {x: 0, y: 0}
   ShouldActivateWeapon: 1
-  InterestPoints:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 10, z: 0}
-  - {x: 10, y: 10, z: 0}
-  - {x: 10, y: 0, z: 0}
-  currentInterest: 0
-  DetectionRange: 1.5
-  ChaseRange: 3
+  DetectionRange: 3
+  ChaseRange: 6
   AttackRange: 1
   Ranged: 0
   detected: 0
@@ -243,6 +238,11 @@ PrefabInstance:
     - target: {fileID: 7549340019148319954, guid: 5e52287e08fe196448646cedbddfe7fd,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549340019148319956, guid: 5e52287e08fe196448646cedbddfe7fd,
+        type: 3}
+      propertyPath: m_BodyType
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7549340019148319957, guid: 5e52287e08fe196448646cedbddfe7fd,

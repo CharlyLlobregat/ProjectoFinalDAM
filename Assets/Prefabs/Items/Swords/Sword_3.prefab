@@ -14,8 +14,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
+      propertyPath: lvl
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
+        type: 3}
       propertyPath: Name
-      value: Justice Sword
+      value: Claymore
       objectReference: {fileID: 0}
     - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
@@ -30,7 +35,7 @@ PrefabInstance:
     - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
       propertyPath: Strength
-      value: 2
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}

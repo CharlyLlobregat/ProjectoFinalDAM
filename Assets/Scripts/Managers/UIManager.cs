@@ -102,7 +102,6 @@ public class UIManager : MonoBehaviour {
                 this.transform.GetChild(i).name == "ItemWindow"))
                     if(this.transform.GetChild(i).TryGetComponent<WindowController>(out WindowController win)) win.Show();
         Inventory.InventoryManager.Instance.UpdateInventory();
-
     }
 
     public void UpdateRed(string _red) {
@@ -171,12 +170,19 @@ public class UIManager : MonoBehaviour {
     }
 
     public void GoToGame() {
+        ResetWindows();
+
         StatWindow.gameObject.SetActive(true);
         InventoryWindow.gameObject.SetActive(true);
         ItemWindow.gameObject.SetActive(false);
         DialogueWindow.gameObject.SetActive(false);
         SettingsWindow.gameObject.SetActive(false);
+        Credits.gameObject.SetActive(false);
 
+
+        GameManager.Instance.ShowDoor("Dungeon");
+        GameManager.Instance.ShowDoor("Boss");
+        GameManager.Instance.ShowDoor("Garden");
         OnUIClick = false;
 
         PauseMenu.gameObject.SetActive(false);

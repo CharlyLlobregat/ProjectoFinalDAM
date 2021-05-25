@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7391665869313214070}
   - component: {fileID: 7391665869313214071}
   - component: {fileID: 7391665869313214064}
+  - component: {fileID: 6030334101507729418}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -76,6 +77,95 @@ MonoBehaviour:
   DoorClosed: {fileID: -3676426378345559523, guid: b283c0831ad9d334b9417ce328ec1843,
     type: 3}
   ShouldOpen: 1
+--- !u!114 &6030334101507729418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7391665869313214068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3231db64ce034ad45aa4a17f66ec54e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InteractionPoint: {fileID: 0}
+  CanActivate: 0
+  CanPlace: 0
+  CanPick: 0
+  CanAttack: 0
+  CanTalk: 0
+  CanMove: 0
+  CanUse: 0
+  CanBeActivated: 0
+  CanBePlaced: 0
+  CanBePicked: 0
+  CanBeAttacked: 0
+  CanBeTalked: 0
+  CanBeMoved: 0
+  CanBeUsed: 1
+  isMoving: 0
+  isTalking: 0
+  isAttacking: 0
+  OnIsMovingChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnIsTalkingChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnIsAttakingChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMove:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMoveTo:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPick:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTalk:
+    m_PersistentCalls:
+      m_Calls: []
+  OnUse:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPlace:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAttacked:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPicked:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTalked:
+    m_PersistentCalls:
+      m_Calls: []
+  OnUsed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7391665869313214064}
+        m_MethodName: Use
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnPlaced:
+    m_PersistentCalls:
+      m_Calls: []
+  OnKilledBy:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7391665870029119251
 GameObject:
   m_ObjectHideFlags: 0

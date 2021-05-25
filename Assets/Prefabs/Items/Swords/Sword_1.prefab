@@ -14,8 +14,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
+      propertyPath: lvl
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
+        type: 3}
       propertyPath: Name
-      value: Fire Sword
+      value: Fire Saber
       objectReference: {fileID: 0}
     - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
@@ -25,7 +30,12 @@ PrefabInstance:
     - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
       propertyPath: Strength
-      value: 2
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
+        type: 3}
+      propertyPath: AttackSpeed
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2310146914259558985, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}

@@ -68,28 +68,48 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6042470018487446157, guid: 3cae72ea0abbca1489bf9aa9043fdddf,
         type: 3}
+      propertyPath: hp
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042470018487446157, guid: 3cae72ea0abbca1489bf9aa9043fdddf,
+        type: 3}
       propertyPath: exp
-      value: 30
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6042470018487446157, guid: 3cae72ea0abbca1489bf9aa9043fdddf,
         type: 3}
       propertyPath: Name
-      value: Pumpking Skeleton
+      value: C
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042470018487446157, guid: 3cae72ea0abbca1489bf9aa9043fdddf,
+        type: 3}
+      propertyPath: Defense
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042470018487446157, guid: 3cae72ea0abbca1489bf9aa9043fdddf,
+        type: 3}
+      propertyPath: Strength
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042470018487446157, guid: 3cae72ea0abbca1489bf9aa9043fdddf,
+        type: 3}
+      propertyPath: currentHp
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6042470018487446158, guid: 3cae72ea0abbca1489bf9aa9043fdddf,
         type: 3}
       propertyPath: BaseItemId.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6042470018487446158, guid: 3cae72ea0abbca1489bf9aa9043fdddf,
         type: 3}
       propertyPath: EquipeItemId.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6042470018487446158, guid: 3cae72ea0abbca1489bf9aa9043fdddf,
         type: 3}
       propertyPath: BaseItemId.Array.data[0]
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6042470018487446158, guid: 3cae72ea0abbca1489bf9aa9043fdddf,
         type: 3}
@@ -99,7 +119,7 @@ PrefabInstance:
     - target: {fileID: 6042470018487446158, guid: 3cae72ea0abbca1489bf9aa9043fdddf,
         type: 3}
       propertyPath: EquipeItemId.Array.data[0]
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6042470018487446158, guid: 3cae72ea0abbca1489bf9aa9043fdddf,
         type: 3}

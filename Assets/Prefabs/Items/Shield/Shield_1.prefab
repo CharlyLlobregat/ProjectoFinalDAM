@@ -10,12 +10,17 @@ PrefabInstance:
     - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
       propertyPath: Id
-      value: 4
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
+        type: 3}
+      propertyPath: lvl
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
       propertyPath: Name
-      value: Shield
+      value: Rustic Shield
       objectReference: {fileID: 0}
     - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
@@ -25,7 +30,7 @@ PrefabInstance:
     - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
       propertyPath: Defense
-      value: 1
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2310146914259558985, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
@@ -55,8 +60,18 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 2553925169721446334, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
+      propertyPath: lvl
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553925169721446334, guid: 9eaca84921931bd45bfd14c73671990b,
+        type: 3}
       propertyPath: Name
       value: Shield_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553925169721446334, guid: 9eaca84921931bd45bfd14c73671990b,
+        type: 3}
+      propertyPath: Defense
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3506967108530445632, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
@@ -131,7 +146,7 @@ PrefabInstance:
     - target: {fileID: 9158615175245205086, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
       propertyPath: BaseItemId.Array.data[0]
-      value: 4
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9eaca84921931bd45bfd14c73671990b, type: 3}

@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
       propertyPath: Id
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
@@ -30,7 +30,7 @@ PrefabInstance:
     - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
       propertyPath: Defense
-      value: 3
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 2378485329672732380, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
@@ -111,7 +111,7 @@ PrefabInstance:
     - target: {fileID: 9158615175245205086, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
       propertyPath: BaseItemId.Array.data[0]
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9eaca84921931bd45bfd14c73671990b, type: 3}

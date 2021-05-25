@@ -15,7 +15,7 @@ PrefabInstance:
     - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
       propertyPath: Name
-      value: Ice Arrow
+      value: Blue Arrow
       objectReference: {fileID: 0}
     - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
@@ -30,7 +30,7 @@ PrefabInstance:
     - target: {fileID: 1268901086963807480, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}
       propertyPath: Strength
-      value: 3
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2378485329672732380, guid: 9eaca84921931bd45bfd14c73671990b,
         type: 3}

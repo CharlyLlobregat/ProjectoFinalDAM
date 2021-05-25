@@ -33,7 +33,7 @@ public class Loading : MonoBehaviour {
     IEnumerator LoadScene() {
         yield return null;
 
-        this.loading = SceneManager.LoadSceneAsync("Pruebas");
+        this.loading = SceneManager.LoadSceneAsync("Main");
         this.loading.allowSceneActivation = false;
         this.Info.text = "Loading Scene...";
 
